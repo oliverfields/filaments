@@ -1,0 +1,26 @@
+
+DirectoryIndex index
+ErrorDocument 404 /404
+
+Order deny,allow
+AuthType Basic
+AuthUserFile /home/5/phnd/htpasswd/filaments/.htpasswd
+AuthName "Password protected area"
+Require valid-user
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on 
+
+  # Rewrite favicon.ico
+  RewriteRule ^favicon\.ico$ /assets/theme/images/favicon.ico [NC,L]
+
+  # Redirect to https
+  RewriteCond %{HTTPS} off
+  RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# Force text/html for all files
+<FilesMatch "^[^.]+$">
+#<FilesMatch "\.*">
+  ForceType text/html
+</FilesMatch>
