@@ -1,1 +1,6 @@
 site
+build
+venv
+build.log
+build.conf
+content
