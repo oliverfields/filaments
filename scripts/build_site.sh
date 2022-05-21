@@ -3,7 +3,7 @@
 # Halt on error
 set -e
 
-conf_file="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+conf_file="$( cd -- "$(dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
 conf_file="${conf_file%/*}/build.conf"
 
 # Load config variables
@@ -18,11 +18,13 @@ function log() {
 }
 
 function chrash() {
-  log "CHRASHED UNEXPECTEDLY"
+  log "CHRASHED AND BURNED"
 }
 
 
 trap "chrash" ERR
+
+log "Site deployment started"
 
 
 # Make or clear build dir and enter it
@@ -66,8 +68,6 @@ cd "$site_dir"
 
 log "Removing execute on files"
 find content -type f -exec chmod u-x {} \;
-log "..exept on .htaccess"
-chmod u+x "content/.htaccess"
 
 log "Enabling Pagegen virtual environment"
 source "$site_dir/venv/bin/activate"
@@ -78,6 +78,13 @@ pagegen -g prod
 log "Deleting old site: $public_dir"
 rm -Rf "$public_dir"
 
+log "Copying .htaccess"
+cp "$site_dir/htaccess" "$site_dir/site/prod/.htaccess"
+
 log "Deploying new site to public_dir: $public_dir"
 mv "$site_dir/site/prod" "$public_dir"
 
+log "Truncating log file"
+sed -i '1001,$ d' "$log"
+
+log "Site deployment complete"
