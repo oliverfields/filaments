@@ -4,7 +4,7 @@ ErrorDocument 404 /404
 
 Order deny,allow
 AuthType Basic
-AuthUserFile /home/5/p/phnd/htpasswd/filaments/.htpasswd
+AuthUserFile HTPASSWD_PATH 
 AuthName "Password protected area"
 Require valid-user
 

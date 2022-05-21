@@ -78,8 +78,8 @@ pagegen -g prod
 log "Deleting old site: $public_dir"
 rm -Rf "$public_dir"
 
-log "Copying .htaccess"
-cp "$site_dir/htaccess" "$site_dir/site/prod/.htaccess"
+log "Deploying .htaccess"
+sed "s#HTPASSWD_PATH#$htpasswd_path#" < "$site_dir/htaccess" > "$site_dir/site/prod/.htaccess"
 
 log "Deploying new site to public_dir: $public_dir"
 mv "$site_dir/site/prod" "$public_dir"

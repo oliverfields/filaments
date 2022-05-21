@@ -7,3 +7,4 @@ app_secret=
 dropbox_download_url=
 dropbox_zip=
 log=
+htpasswd_path=
