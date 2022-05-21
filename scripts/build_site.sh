@@ -3,9 +3,11 @@
 # Halt on error
 set -e
 
+conf_file="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+conf_file="${conf_file%/*}/build.conf"
 
 # Load config variables
-. '/home/5/p/phnd/filaments/build.conf'
+. "$conf_file"
 
 
 function log() {
