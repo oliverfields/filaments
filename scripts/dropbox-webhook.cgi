@@ -4,8 +4,9 @@
 # https://dropbox.tech/developers/dropbox_hook-py-a-tool-for-testing-your-webhooks
 
 
-conf_file="$( cd -- "$(dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
-conf_file="${conf_file%/*}/build.conf"
+#conf_file="$( cd -- "$(dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
+#conf_file="${conf_file%/*}/build.conf"
+conf_file='../../filaments/build.conf'
 
 # Load config variables
 . "$conf_file"

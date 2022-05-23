@@ -19,13 +19,19 @@ function log() {
 
 function chrash() {
   log "CHRASHED AND BURNED"
+  tail -n60 "$log"
+  exit 1
 }
 
 
 trap "chrash" ERR
 
-log "Site deployment started"
 
+# Start time in seconds since Epoch
+start_time="$(date +%s)"
+start_time_long="$(date --iso-8601=s)"
+
+log "Site deployment started"
 
 # Make or clear build dir and enter it
 if [ -d "$build_dir" ]; then
@@ -63,11 +69,11 @@ fi
 log "Moving dropbox content to content_dir"
 mv "$build_dir/content" "$content_dir"
 
+log "Setting file permissions for build"
+find "$content_dir" -type f -exec chmod u-x {} \;
+
 log "cd to site_dir: $site_dir"
 cd "$site_dir"
-
-log "Removing execute on files"
-find content -type f -exec chmod u-x {} \;
 
 log "Enabling Pagegen virtual environment"
 source "$site_dir/venv/bin/activate"
@@ -81,10 +87,21 @@ rm -Rf "$public_dir"
 log "Deploying .htaccess"
 sed "s#HTPASSWD_PATH#$htpasswd_path#" < "$site_dir/htaccess" > "$site_dir/site/prod/.htaccess"
 
+log "Setting file permissions for web"
+find "$site_dir/site/prod" -type f -exec chmod 644 {} \;
+find "$site_dir/site/prod" -type d -exec chmod 755 {} \;
+
 log "Deploying new site to public_dir: $public_dir"
 mv "$site_dir/site/prod" "$public_dir"
 
-log "Truncating log file"
-sed -i '1001,$ d' "$log"
+log "Truncating log file: $log"
+echo "$(tail -10 "$log")" > "$log"
 
 log "Site deployment complete"
+
+# End time in seconds since Epoch
+end_time="$(date +%s)"
+
+let build_time=$end_time-$start_time
+echo "$start_time_long;$start_time;$end_time;$build_time" >> "$build_stats"
+

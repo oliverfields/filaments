@@ -4,3 +4,4 @@ venv
 build.log
 build.conf
 content
+*.swp
