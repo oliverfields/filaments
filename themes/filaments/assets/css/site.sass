@@ -1,26 +1,16 @@
-/* https://ethanschoonover.com/solarized/ */
+// https://coolors.co/050505-4e6e5d-dddbcb-a24936-d36135
 
-$base03: #002b36
-$base02: #073642
-$base01: #586e75
-$base00: #657b83
-$base0: #839496
-$base1: #93a1a1
-$base2: #eee8d5
-$base3: #fdf6e3
-$yellow: #b58900
-$orange: #cb4b16
-$red: #dc322f
-$magenta: #d33682
-$violet: #6c71c4
-$blue: #268bd2
-$cyan: #2aa198
-$green: #859900
+$dark-1: #050505
+$dark-2: #4E6E5D
+$light-1: #F7F4F7
+$light-2: #DDDBCB
+$highlight-1: #D36135
+//$highlight-1: #A24936
 
 $note-width: 586px
 
 html
-	background-color: $base3
+	background-color: $light-1
 	-webkit-text-size-adjust: 100%
 
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video
@@ -30,9 +20,12 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 	outline: 0
 	font-size: 16px
 	vertical-align: baseline
-	color: $base03
+	color: $dark-1
 	font-family: Helvetica,sans-serif
 	line-height: 1em
+
+article h1:first-of-type
+	margin-top: .5em
 
 article
 	margin: 0 auto 2em auto
@@ -46,40 +39,37 @@ nav
 	margin: 1em auto 1em auto 
 	display: block
 	width: $note-width
+	text-align: right
 
 nav h1
-	color: $magenta
+	margin: 0
 	font-size: 1.4em
 	display: inline
+	text-decoration: none
+	color: $dark-2
+	float: left
 
 nav a
 	margin-left: .6em
+	color: $dark-2
 	border: none
+	text-decoration: none
 
 p
 	line-height: 1.4em
 	margin: .6em 0
 
-a
-	border-bottom: 1px dotted $blue
-	text-decoration: none
-	color: $blue
-
-a:hover
-	color: $violet
-	border-bottom-color: $violet
-
 .admonition
 	margin: .6em 0
 	padding: .6em 2em
-	background-color: $base2
+	background-color: $light-2
 
 .admonition p
 	margin: 0 0 .2em 0
 
 .admonition-title
+	color: $dark-2
 	font-size: 1.6em
-	color: $yellow
 
 h1, h2, h3, h4
 	font-family: Tahoma, sans-serif
@@ -87,37 +77,26 @@ h1, h2, h3, h4
 	margin: 1.2em 0 .6em 0
 
 h1
-	color: $orange
+	color: $highlight-1
 	font-size: 2.6em
 
 h2
-	color: $cyan
+	color: $dark-2
 	font-size: 2em
 
 h3
-	font-size: 1.8em
+	font-size: 1.7em
 
 h4
 	font-size: 1.4em
 
-h1:first-of-type
-	margin-top: 0
-
-pre
+pre code
+	background-color: $dark-1
+	color: $light-1
 	line-height: 1.4em
 	margin: .6em 1em
 	padding: .6em 1em
-	background-color: $base02
-	color: $base2
-	font-family: 'Courier New', monospace
 	border-radius: 3px
-
-blockquote
-	line-height: 1.4em
-	margin: .6em 1em
-	padding: .6em 1em
-	background-color: $base02
-	color: $base2
 
 ul, ol
 	margin: .6em 0
@@ -130,11 +109,11 @@ table
 	margin: .6em 1.6em
 	border-collapse: collapse
 
-th
-	border-bottom: 1px dotted $base1
-
 td, th
 	padding: .4em
+
+th
+	border-bottom: solid 1px $dark-1
 
 #search-query
 
@@ -145,15 +124,15 @@ td, th
 .search-hit
 	line-height: 2.5em
 
-tt, tt span.pre, code
-	background-color: $base02
+p code
+	background-color: $dark-1
 	padding: .2em
 	font-family: monospace
 	font-size: .9em
-	color: $base2
+	color: $light-1
 	border-radius: 1px
 
 .admonition tt, .admonition span.pre, .admonition code
-	background-color: $base02
-	color: $base2
+	background-color: $dark-1
+	color: $light-1
 	border-radius: 1px
