@@ -95,7 +95,7 @@ log "Deploying new site to public_dir: $public_dir"
 mv "$site_dir/site/prod" "$public_dir"
 
 log "Truncating log file: $log"
-echo "$(tail -10 "$log")" > "$log"
+echo "$(tail -400 "$log")" > "$log"
 
 log "Site deployment complete"
 
