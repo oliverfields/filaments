@@ -13,7 +13,7 @@
   </head>
   <body>
     <nav class="note-wide">
-      <a href="/" class="home-link"><h1>Filaments</h1></a>
+      <a href="/" class="home-link"><h1>Filaments.</h1></a>
       <a href="thoughts">Thoughts</a>
       <a href="inbox">Inbox</a>
       <a href="references">References</a>
