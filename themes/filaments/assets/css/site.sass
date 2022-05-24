@@ -6,7 +6,7 @@ $light-1: #F7F6F3
 $light-2: #DDDBCB
 $highlight-1: #D36135
 //$highlight-1: #A24936
-
+$base-font-size: 16px
 $note-width: 586px
 
 html
@@ -18,7 +18,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 	padding: 0
 	border: 0
 	outline: 0
-	font-size: 16px
+	font-size: $base-font-size
 	vertical-align: baseline
 	color: $dark-1
 	font-family: Helvetica,sans-serif
@@ -26,6 +26,9 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 
 body
         padding: 0 1em
+
+img
+        max-width: 100%
 
 article h1:first-of-type
 	margin-top: .5em
@@ -53,18 +56,25 @@ nav h1
 	float: left
 
 nav a
-	margin-left: .6em
+	margin-left: .5em
 	color: $dark-2
 	border: none
 	text-decoration: none
 
 p
 	line-height: 1.4em
-	margin: .6em 0
+	margin: .5em 0 1.5em 0
+
+.taxonomy
+        margin-top: .5em
+
+.taxonomy h2
+        display: inline
+        font-size: $base-font-size
 
 .admonition
-	margin: .6em 0
-	padding: .6em 2em
+	margin: .5em 0 1.5em 0
+	padding: .5em 2em
 	background-color: $light-2
 
 .admonition p
@@ -77,7 +87,7 @@ p
 h1, h2, h3, h4
 	font-family: Tahoma, sans-serif
 	font-weight: normal
-	margin: 1.2em 0 .6em 0
+	margin: 1.5em 0 .5em 0
 
 h1
 	color: $highlight-1
@@ -93,27 +103,29 @@ h3
 h4
 	font-size: 1.4em
 
-pre code
+pre
 	background-color: $dark-1
-	color: $light-1
 	line-height: 1.4em
-	margin: .6em 1em
-	padding: .6em 1em
+	margin: .5em 1em 1.5em 1em
+	padding: .5em 1em
 	border-radius: 3px
 
+pre code
+	color: $light-1
+
 ul, ol
-	margin: .6em 0
+	margin: .5em 0 1.5em 0
 	padding-left: 2em
 
 li
 	line-height: 1.8em
 
 table
-	margin: .6em 1.6em
+	margin: .5em .5em 1.5em .5em
 	border-collapse: collapse
 
 td, th
-	padding: .4em
+	padding: .5em
 
 th
 	border-bottom: solid 1px $dark-1
