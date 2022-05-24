@@ -5,3 +5,4 @@ build.log
 build.conf
 content
 *.swp
+build_stats.csv

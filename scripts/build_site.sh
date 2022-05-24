@@ -104,4 +104,5 @@ end_time="$(date +%s)"
 
 let build_time=$end_time-$start_time
 echo "$start_time_long;$start_time;$end_time;$build_time" >> "$build_stats"
+cp "$build_stats" "$public_dir/build-stats.csv"
 

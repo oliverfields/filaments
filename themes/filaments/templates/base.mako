@@ -9,7 +9,6 @@
     <meta name="Generator" content="Pagegen" />
     <link rel="shortcut icon" href="${site.base_url}/assets/theme/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="${site.base_url}/assets/theme/css/site.css" type="text/css" />
-    <script src="${site.base_url}/assets/theme/javascript/site.js"></script>
   </head>
   <body>
     <nav class="note-wide">
