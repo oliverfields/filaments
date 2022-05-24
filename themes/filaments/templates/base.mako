@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%! from datetime import datetime %><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -20,5 +20,6 @@
     <article class="note-wide">
       <%block name="content" />
     </article>
+    <footer>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')}</footer>
   </body>
 </html>
