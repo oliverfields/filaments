@@ -25,10 +25,10 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 	line-height: 1em
 
 body
-        padding: 0 1em
+	padding: 0 1em
 
 img
-        max-width: 100%
+	max-width: 100%
 
 article h1:first-of-type
 	margin-top: .5em
@@ -66,11 +66,20 @@ p
 	margin: .5em 0 1.5em 0
 
 .taxonomy
-        margin-top: .5em
+	margin-top: -.5em
 
-.taxonomy h2
-        display: inline
-        font-size: $base-font-size
+.taxonomy div
+	display: inline-block;
+	margin-right: .8em
+	line-height: 1.5em
+
+.taxonomy a
+	display: inline
+	font-size: .9em
+
+a.taxonomy-title
+	text-decoration: none
+	color: $dark-2
 
 .admonition
 	margin: .5em 0 1.5em 0
@@ -151,3 +160,4 @@ p code
 	background-color: $dark-1
 	color: $light-1
 	border-radius: 1px
+

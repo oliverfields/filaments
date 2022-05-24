@@ -1,10 +1,11 @@
 <%inherit file="base.mako"/>
 
 <%block name="content">
-	<ol>
-	% for c in page.children:
+	<h1>${page.title}</h1>
+	<ul>
+	% for c in sorted(page.children, key=lambda i: i.url_path, reverse=True):
 		<li><a href="${c.url_path}">${c.title}</a></li>
 	% endfor
-	</ol>
+	</ul>
 </%block>
 
