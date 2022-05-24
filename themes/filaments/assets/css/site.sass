@@ -24,6 +24,23 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 	font-family: Helvetica,sans-serif
 	line-height: 1em
 
+@media only screen and (min-width: $note-width)
+	.home-link-small
+		display: none
+
+	.home-link-large
+		display: inline
+
+@media only screen and (max-width: $note-width)
+	.home-link-small
+		display: inline
+
+	.home-link-large
+		display: none
+
+	#search-query
+		max-width: 100px
+
 body
 	padding: 0 1em
 
@@ -46,6 +63,10 @@ nav
 	display: block
 	max-width: $note-width
 	text-align: right
+
+nav form
+	display: inline
+	margin-left: 1em
 
 nav h1
 	margin: -.2em 0 0 0
@@ -149,10 +170,16 @@ th
 	border-bottom: solid 1px $dark-1
 
 #search-query
+	border: solid 1px $dark-2
+	border-radius: 3px
 
-#search-submit
+#search-button
+	background-color: $light-1
+	border: none
+	cursor: pointer
 
-#search-form
+#hit-count
+	margin: .5em 0 1.5em 0
 
 .search-hit
 	line-height: 2.5em
