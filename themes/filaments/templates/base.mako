@@ -12,8 +12,8 @@
   </head>
   <body>
     <nav class="note-wide">
-      <a href="/" class="home-link-large"><h1>Filaments.</h1></a>
-      <a href="/" class="home-link-small"><img src="/assets/theme/images/favicon-green.ico" alt="F." /></a>
+      <a href="/" class="home-link-large">Filaments.</a>
+      <a href="/" class="home-link-small">F.</a>
       <a href="thoughts" title="Thoughts">💭</a>
       <a href="inbox" title="Inbox">📭</a>
       <a href="references" title="References">📖</a>
