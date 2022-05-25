@@ -34,6 +34,10 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 @media only screen and (max-width: $note-width)
 	.home-link-small
 		display: inline
+		float: left
+		font-weight: bold
+		font-size: 1.5em
+		margin: 3px 0 0 0
 
 	.home-link-large
 		display: none
@@ -64,23 +68,21 @@ nav
 	max-width: $note-width
 	text-align: right
 
+nav h1
+	margin: -.1em 0 0 0
+	font-size: 1.4em
+	color: $dark-2
+	float: left
+
 nav form
 	display: inline
 	margin-left: 1em
 
-nav h1
-	margin: -.2em 0 0 0
-	font-size: 1.4em
-	display: inline
-	text-decoration: none
-	color: $dark-2
-	float: left
-
 nav a
 	margin-left: .5em
-	color: $dark-2
 	border: none
 	text-decoration: none
+	color: $dark-2
 
 footer
 	margin: 1em auto 1em auto
