@@ -3,7 +3,7 @@
 <%block name="content">
 	<h1>${page.title}</h1>
 
-	<h2>Categories of thought</h2>
+	<h2>Categories</h2>
 	<ul>
 	% for key, c in site.categories.items():
 		<li><a href="${c['url']}">${c['name']}</a></li>
