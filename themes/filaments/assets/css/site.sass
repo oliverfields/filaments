@@ -44,13 +44,19 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 		display: none
 
 	#search-query
-		max-width: 100px
+		max-width: 80px
 
 body
 	padding: 0 1em
 
 img
 	max-width: 100%
+
+a
+	text-decoration: none
+
+article a
+	text-decoration: underline
 
 article h1:first-of-type
 	margin-top: .5em
@@ -77,8 +83,15 @@ nav form
 nav a
 	margin-left: .5em
 	border: none
-	text-decoration: none
 	color: $dark-2
+
+.prev-next-links
+	max-width: $note-width
+	text-align: right
+
+.prev-next-links a
+	color: $dark-2
+	line-height: 1.5em
 
 footer
 	margin: 1em auto 1em auto
@@ -92,6 +105,9 @@ footer
 p
 	line-height: 1.5em
 	margin: .5em 0 1.5em 0
+
+.directory-list a
+	text-decoration: none
 
 .taxonomy
 	margin-top: -.5em

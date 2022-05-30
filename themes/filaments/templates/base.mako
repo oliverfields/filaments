@@ -14,14 +14,25 @@
     <nav class="note-wide">
       <a href="/" class="home-link-large">Filaments.</a>
       <a href="/" class="home-link-small">F.</a>
-      <a href="thoughts" title="Thoughts">💭</a>
-      <a href="inbox" title="Inbox">📭</a>
-      <a href="references" title="References">📖</a>
+      <a href="/thoughts" title="Thoughts">💭</a>
+      <a href="/journaling" title="Journaling">✍️</a>
+      <a href="/divination" title="Divination">🔮</a>
+      <a href="/inbox" title="Inbox">📭</a>
+      <a href="/references" title="References">📖</a>
     </nav>
     <article class="note-wide">
       <%block name="content" />
     </article>
-    <footer>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')}</footer>
+    <div class="prev-next-links">
+      % if page.previous_page:
+      <div id="previous-link"><a href="${page.previous_page.url_path}">◀️ ${page.previous_page.title}</a></div>
+      % endif
+      % if page.next_page:
+      <div id="next-link"><a href="${page.next_page.url_path}">${page.next_page.title} ➡️</a></div>
+      % endif
+    </div>
+    <footer>
+      <div>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')}</footer></div>
     <script>
 search_query_text = '';
 query_string = window.location.search.substring(1).split('&');
