@@ -18,22 +18,31 @@
       <a href="/journaling" title="Journaling">✍️</a>
       <a href="/divination" title="Divination">🔮</a>
       <a href="/inbox" title="Inbox">📭</a>
-      <a href="/references" title="References">📖</a>
+      <a href="/references" title="References">📚</a>
     </nav>
+    % if len(page.crumb_trail) > 2:
+      <ol id="crumb-trail">
+        % for p in page.crumb_trail:
+          % if not loop.first and not loop.last:
+            <li><a href="${p.url_path}">${p.title}</a></li>
+          % endif
+        % endfor
+      </ol>
+    % endif
     <article class="note-wide">
       <%block name="content" />
     </article>
     <div class="prev-next-links">
       % if page.previous_page:
-      <div id="previous-link"><a href="${page.previous_page.url_path}">◀️ ${page.previous_page.title}</a></div>
+      <div id="previous-link"><a href="${page.previous_page.url_path}">&#9664; ${page.previous_page.title}</a></div>
       % endif
       % if page.next_page:
-      <div id="next-link"><a href="${page.next_page.url_path}">${page.next_page.title} ➡️</a></div>
+      <div id="next-link"><a href="${page.next_page.url_path}">${page.next_page.title} &#9654;</a></div>
       % endif
-    </div>
-    <footer>
-      <div>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')}</footer></div>
+    </div><!-- /prev-next-links -->
+    <footer>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')}</footer>
     <script>
+// Site search
 search_query_text = '';
 query_string = window.location.search.substring(1).split('&');
 for (let i = 0; i < query_string.length; i++) {
@@ -65,6 +74,21 @@ form.appendChild(query_field);
 form.appendChild(submit_query);
 
 nav.appendChild(form);
+
+// Add copy URL icon to H1 tags
+const h1s = document.getElementsByTagName('h1');
+for(var i = 0; i < h1s.length; i++) {
+  const copyUrl = document.createElement('span');
+  copyUrl.style.cursor = 'pointer';
+  copyUrl.style.marginLeft = '.5em';
+  copyUrl.setAttribute('title', 'Copy page URL');
+  copyUrl.innerHTML = '✂️';
+  // Copy page url to clipboard
+  copyUrl.addEventListener('click', function () {
+    navigator.clipboard.writeText(window.location.href);
+  }, false);
+  h1s[i].append(copyUrl);
+}
     </script>
   </body>
 </html>

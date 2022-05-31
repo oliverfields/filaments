@@ -55,13 +55,22 @@ img
 a
 	text-decoration: none
 
+li::marker
+	color: $dark-2
+
+blockquote
+	border-left: solid 2em $light-2
+	padding-left: 1em
+	margin-left: 1em
+
 article a
 	text-decoration: underline
 
 article h1:first-of-type
-	margin-top: .5em
+	margin-top: 1em
 
 article
+	clear: both
 	margin: 0 auto 2em auto
 	display: block
 	max-width: $note-width
@@ -88,6 +97,7 @@ nav a
 .prev-next-links
 	max-width: $note-width
 	text-align: right
+	margin: 1em auto 1em auto
 
 .prev-next-links a
 	color: $dark-2
@@ -109,21 +119,23 @@ p
 .directory-list a
 	text-decoration: none
 
-.taxonomy
-	margin-top: -.5em
+.article-meta
+	margin: -.5em 0 1em 0
 
-.taxonomy div
+.article-meta div
 	display: inline-block;
 	margin-right: .8em
 	line-height: 1.5em
-
-.taxonomy a
-	display: inline
 	font-size: .9em
 
-a.taxonomy-title
+.article-meta a
+	display: inline
+	text-decoration: none
+
+.article-meta-title
 	text-decoration: none
 	color: $dark-2
+	font-size: 1em
 
 .admonition
 	margin: .5em 0 1.5em 0
@@ -212,3 +224,20 @@ p code
 	color: $light-1
 	border-radius: 1px
 
+#crumb-trail
+	max-width: $note-width
+	margin: 1em auto 1em auto
+	padding-left: 0
+
+#crumb-trail li
+	float: left
+	margin-right: .7em
+	list-style-type: '❯'
+	padding-left: .2em
+	font-size: .9em
+
+#crumb-trail a
+	color: $dark-2
+
+#crumb-trail li:first-child
+	list-style-type: none
