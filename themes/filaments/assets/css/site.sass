@@ -6,8 +6,9 @@ $light-1: #F7F6F3
 $light-2: #DDDBCB
 $highlight-1: #D36135
 //$highlight-1: #A24936
-$base-font-size: 16px
-$note-width: 586px
+$base-font-size: 17px
+$base-line-height: 27px
+$base-width: 586px
 
 html
 	background-color: $light-1
@@ -22,21 +23,27 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 	vertical-align: baseline
 	color: $dark-1
 	font-family: Helvetica,sans-serif
-	line-height: 1em
+	line-height: $base-line-height
 
 .home-link-large, .home-link-small
 		float: left
 		font-size: 1.5em
 		margin: 3px 0 0 0
 
-@media only screen and (min-width: $note-width)
+@media only screen and (min-width: $base-width)
 	.home-link-small
 		display: none
 
 	.home-link-large
 		display: inline
 
-@media only screen and (max-width: $note-width)
+	.sidebar
+		width: calc(#{$base-width} / 3)
+		float: right
+		background-color: $light-2
+		padding: .8em
+
+@media only screen and (max-width: $base-width)
 	.home-link-small
 		display: inline
 
@@ -44,7 +51,11 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 		display: none
 
 	#search-query
-		max-width: 80px
+		max-width: 70px
+
+	.sidebar
+		background-color: $light-2
+		padding: .8em
 
 body
 	padding: 0 1em
@@ -56,7 +67,7 @@ a
 	text-decoration: none
 
 li::marker
-	color: $dark-2
+	font-size: .8em
 
 blockquote
 	border-left: solid 2em $light-2
@@ -67,13 +78,14 @@ article a
 	text-decoration: underline
 
 article h1:first-of-type
-	margin-top: 1em
+	margin: .6em 0 .5em 0
+	line-height: 1.1em
 
 article
 	clear: both
 	margin: 0 auto 2em auto
 	display: block
-	max-width: $note-width
+	max-width: $base-width
 
 .home-link
 	margin-left: 0 !important
@@ -81,23 +93,24 @@ article
 nav
 	margin: 1em auto 1em auto
 	display: block
-	max-width: $note-width
+	max-width: $base-width
 	text-align: right
 
 nav form
 	display: inline
-	margin-left: 1em
+	margin-left: .8em
 	white-space: nowrap
 
 nav a
-	margin-left: .5em
+	margin-left: .4em
 	border: none
 	color: $dark-2
 
 .prev-next-links
-	max-width: $note-width
+	max-width: $base-width
 	text-align: right
 	margin: 1em auto 1em auto
+	clear: both
 
 .prev-next-links a
 	color: $dark-2
@@ -106,21 +119,21 @@ nav a
 footer
 	margin: 1em auto 1em auto
 	display: block
-	max-width: $note-width
+	max-width: $base-width
 	text-align: right
 	font-size: .8em
 	color: $dark-2
 	opacity: .4
+	clear: both
 
 p
-	line-height: 1.5em
 	margin: .5em 0 1.5em 0
 
 .directory-list a
 	text-decoration: none
 
 .article-meta
-	margin: -.5em 0 1em 0
+	margin: -.5em 0 2em 0
 
 .article-meta div
 	display: inline-block;
@@ -135,7 +148,10 @@ p
 .article-meta-title
 	text-decoration: none
 	color: $dark-2
-	font-size: 1em
+	font-size: .8em
+	text-transform: uppercase
+	font-weight: bold
+	opacity: .85
 
 .admonition
 	margin: .5em 0 1.5em 0
@@ -150,7 +166,7 @@ p
 	font-size: 1.6em
 
 h1, h2, h3, h4
-	font-family: Tahoma, sans-serif
+	font-family: Georgia, serif
 	font-weight: normal
 	margin: 1.5em 0 .5em 0
 
@@ -225,9 +241,10 @@ p code
 	border-radius: 1px
 
 #crumb-trail
-	max-width: $note-width
-	margin: 1em auto 1em auto
+	max-width: $base-width
+	margin: 1.5em auto 1em auto
 	padding-left: 0
+	opacity: .85
 
 #crumb-trail li
 	float: left
@@ -235,9 +252,11 @@ p code
 	list-style-type: '❯'
 	padding-left: .2em
 	font-size: .9em
+	line-height: 2em
 
 #crumb-trail a
 	color: $dark-2
 
 #crumb-trail li:first-child
 	list-style-type: none
+

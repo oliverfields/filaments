@@ -3,13 +3,14 @@
 <%block name="content">
 	<h1>${page.title}</h1>
 
-	<h2>Categories</h2>
+	<div class="sidebar">
+	${page.html}
+	</div><!-- /sidebar -->
+
 	<ul>
 	% for key, c in site.categories.items():
 		<li><a href="${c['url']}">${c['name']}</a></li>
 	% endfor
 	</ul>
-
-	${page.html}
 </%block>
 

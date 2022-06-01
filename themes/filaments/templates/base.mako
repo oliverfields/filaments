@@ -74,21 +74,6 @@ form.appendChild(query_field);
 form.appendChild(submit_query);
 
 nav.appendChild(form);
-
-// Add copy URL icon to H1 tags
-const h1s = document.getElementsByTagName('h1');
-for(var i = 0; i < h1s.length; i++) {
-  const copyUrl = document.createElement('span');
-  copyUrl.style.cursor = 'pointer';
-  copyUrl.style.marginLeft = '.5em';
-  copyUrl.setAttribute('title', 'Copy page URL');
-  copyUrl.innerHTML = '✂️';
-  // Copy page url to clipboard
-  copyUrl.addEventListener('click', function () {
-    navigator.clipboard.writeText(window.location.href);
-  }, false);
-  h1s[i].append(copyUrl);
-}
     </script>
   </body>
 </html>
