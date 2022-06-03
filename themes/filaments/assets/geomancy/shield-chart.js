@@ -215,14 +215,15 @@ const ShieldChart = {
 
     for (const [keyRow, row] of Object.entries(this.chart)) {
       let chartRow = document.createElement("tr");
-      chartRow.setAttribute("class", keyRow);
+      //chartRow.setAttribute("class", keyRow);
 
       chartTable.appendChild(chartRow);
 
       for (const [keyFig, figure] of Object.entries(row).reverse()) {
         let figCell = document.createElement("td");
 
-        figCell.setAttribute("class", keyFig + " " + figure.name.toLowerCase().replace(" ", "-"));
+        //figCell.setAttribute("class", keyFig + " " + figure.name.toLowerCase().replace(" ", "-"));
+        figCell.setAttribute("style", "text-align: center;");
 
         if (keyRow == "secondRow") {
           figCell.setAttribute("colspan", "2");
@@ -236,8 +237,32 @@ const ShieldChart = {
           }
         }
 
+        let figPosition = keyFig;
+        figPosition = figPosition.replace(/^first/,"First ");
+        figPosition = figPosition.replace(/^second/,"Second ");
+        figPosition = figPosition.replace(/^third/,"Third ");
+        figPosition = figPosition.replace(/^fourth/,"Fourth ");
+        figPosition = figPosition.replace(/^left/,"Left ");
+        figPosition = figPosition.replace(/^right/,"Right ");
+        figPosition = figPosition.replace(/^judge/,"Judge");
+        figPosition = figPosition.replace(/^sentence/,"Sentence");
+
+        let elm = "";
+        if (figure.element == "Water") elm = "💧";
+        if (figure.element == "Fire") elm = "🔥";
+        if (figure.element == "Earth") elm = "🌍";
+        if (figure.element == "Air") elm = "💨";
+
         let img = document.createElement("img");
         img.setAttribute("src", "figures/" + figure.img);
+        img.setAttribute("title", figPosition + ": " + figure.name + " " + elm);
+        img.setAttribute("width", 32);
+        img.setAttribute("height", 32);
+
+        if (keyFig == "judge") {
+          img.setAttribute("style", "margin-right: -32px;");
+        }
+
         figCell.appendChild(img);
 
         chartRow.appendChild(figCell);
