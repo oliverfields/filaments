@@ -21,7 +21,6 @@ const ShieldChart = {
   },
   lookupFigureByRows: function(head, neck, body, feet) {
     // Find figure matching the active or passive values of arguments
-    //for (var i = 0; i < this.figures.length; i++) {
     for (const [key, fig] of Object.entries(this.figures)) {
       if (fig.head == head && fig.neck == neck && fig.body == body && fig.feet == feet) {
          return fig;
@@ -204,7 +203,7 @@ const ShieldChart = {
   },
   visualizeFigure: function(figure, chartPosition) {
     let img = document.createElement("img");
-    img.setAttribute("src", "figures/" + figure.img);
+    img.setAttribute("src", "/assets/theme/geomancy/figures/" + figure.img);
     img.setAttribute("title", "chartPosition " + chartPosition + " name " + figure.name + " " + figure.head + " " + figure.neck + " " + figure.body + " " + figure.feet);
     document.body.appendChild(img);
   },
@@ -254,13 +253,13 @@ const ShieldChart = {
         if (figure.element == "Air") elm = "💨";
 
         let img = document.createElement("img");
-        img.setAttribute("src", "figures/" + figure.img);
+        img.setAttribute("src", "/assets/theme/geomancy/figures/" + figure.img);
         img.setAttribute("title", figPosition + ": " + figure.name + " " + elm);
         img.setAttribute("width", 32);
         img.setAttribute("height", 32);
 
         if (keyFig == "judge") {
-          img.setAttribute("style", "margin-right: -32px;");
+          img.setAttribute("style", "margin-right: -48px;");
         }
 
         figCell.appendChild(img);

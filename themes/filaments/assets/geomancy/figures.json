@@ -1,5 +1,6 @@
 ﻿{
   "laetitia": {
+    "id": "laetitia",
     "name": "Laetitia",
     "img": "laetitia.svg",
     "head": "active",
@@ -10,6 +11,7 @@
     "description": "Latin for \"Joy\". The figure resembles an arch, fountain, or rainbow. It is good in situations that concern potential, joy, or happiness. Astrologically it is associated with Pisces and Jupiter retrograde. It is ruled externally by water, but inwardly by fire. It is a positive figure for nearly all questions, representing fast situations and construction. It indicates upward motion, happiness, or joy. Its planetary intelligence is Iophiel and its spirit is Hismael; it is associated with the deities Jove and Neptunus, and the angels Sachiel and Barchiel. It is associated with the feet."
   },
   "caput-draconis": {
+    "id": "caput-draconis",
     "name": "Caput Draconis",
     "img": "caput-draconis.svg",
     "head": "passive",
@@ -20,6 +22,7 @@
     "description": "Latin for \"the Head of the Dragon\". The figure resembles the astrological symbol the north node of the Moon. It is neutral figure (good with good, evil with evil) but fortunate with starting or beginning new things. It is favourable for beginnings and profit, and otherwise favourable with other favourable figures, and unfavourable with unfavourable ones. It is associated with the benefic planets Jupiter and Venus, and assigned to the zodiac sign of Sagittarius; its outer element is fire due to its association with Sagittarius while its inner element is earth. Its planetary intelligences are Iophiel and Hagiel and its spirits are Hismael and Kedemel; it is associated with the deities Venus, Iove, and Vulcanus, and the angels Sachiel, Anael, and Zuriel. It is associated with the right arm."
   },
   "fortuna-minor": {
+    "id": "fortuna-minor",
     "name": "Fortuna Minor",
     "img": "fortuna-minor.svg",
     "head": "active",
@@ -30,6 +33,7 @@
     "description": "Latin for \"the Lesser Fortune\". The figure is symbolic of success coming down like beams of light from the Sun. Astrologically it is associated with Leo and the Sun in southern declinations; both its inner and outer elemental rulers are fire. It indicates a weakly positive outcome in nearly all questions, representing transient success that is dependent upon outside help. It favors situations that can be resolved quickly and do not need to be sustained. It is a figure of change and instability. Its planetary intelligence is Nakhiel and its spirit is Sorath; it is associated with the deities Apollo and Jupiter and the angels Michael and Verchiel. It is associated with the spine."
   },
   "amissio": {
+    "id": "amissio",
     "name": "Amissio",
     "img": "amissio.svg",
     "head": "active",
@@ -40,6 +44,7 @@
     "description": "Latin for \"Loss\". The figure is of two bowls or cups turned upside-down. Astrologically, it is associated with Taurus and Venus retrograde. Its inner element is fire but ruled outwardly by earth. In general, the figure is bad or negative figure for all charts except those for love (being a figure of Venus) or where loss is desired and denotes loss. Often it represents something outside of one's grasp. Its planetary intelligence is Hagiel and its spirit is Kedemel; it is associated with the goddess Venus and the angels Anael and Asmodel. It is associated with the neck and throat."
   },
   "puer": {
+    "id": "puer",
     "name": "Puer",
     "img": "puer.svg",
     "head": "active",
@@ -50,6 +55,7 @@
     "description": "Latin for \"the Boy\". The figure is a representation of a sword or erect phallus and refers to male energies, primarily aggression and passion, but also war and male sexuality. It is bad in most cases, but good in situations where boys (in Antiquity and Medieval society) excelled: love and war. Astrologically it is associated with Aries and Mars. All elements are active except Water, the element of emotion; its inner element is air, but due to it being ruled by Mars, its outer element is fire. Its planetary intelligence is Graphiel and its spirit is Bartzabel; it is associated with the deities Mavors and Athena and the angels Samael and Malchidael. It is associated with the head."
   },
   "rubeus": {
+    "id": "rubeus",
     "name": "Rubeus",
     "img": "rubeus.svg",
     "head": "passive",
@@ -60,6 +66,7 @@
     "description": "Latin for \"Red\". The figure is an overturned glass; an inversion, meaning good in all that is evil, and evil in all that is good. Like the Tail of the Dragon, the figure is considered so unfavourable that if it were the first in a reading, the reading would end. Astrologically it is associated with Scorpio and Mars retrograde; its inner element is ruled by air, and its outer element ruled by water. It represents passion, deception, violence, and vice. Its planetary intelligence is Graphiel and its spirit is Bartzabel; it is associated with the god Mavors, and the angels Samael and Barbiel. It is associated with the reproductive and excretory systems along with the genitals."
   },
   "acquisitio": {
+    "id": "acquisitio",
     "name": "Acquisitio",
     "img": "acquisitio.svg",
     "head": "passive",
@@ -70,6 +77,7 @@
     "description": "Latin for \"Gain\". The figure resembles two bowls or cups turned upright. It is good in almost all situations, especially for getting and obtaining things. Astrologically it is associated with Sagittarius and Jupiter, with its outer element ruled by fire and its inner element ruled by air. For most charts it is a positive figure, except where a loss is desired. It indicates a gain financially, mentally, or in any other form, or something within one's grasp. Its planetary intelligence is Iophiel and its spirit is Hismael; it is associated with the deities Jove and Diana, and the angels Sachiel and Adnachiel. It is associated with the hips and thighs."
   },
   "conjunctio": {
+    "id": "conjunctio",
     "name": "Conjunctio",
     "img": "conjunctio.svg",
     "head": "passive",
@@ -80,6 +88,7 @@
     "description": "Latin for \"the Conjunction\". The figure resembles a crossroads or joining of two figures. The sign is neutral in meaning (good in good things, evil in evil), but good with joining or recovering things, especially marriage or relationships. Astrologically it is associated with Virgo and Mercury retrograde. It represents a combination of forces, for good or ill. By itself, it is neutral, only becoming favourable or not by other figures around it. Its outer element is earth, while its inner element is air. Its planetary intelligence is Tiriel and its spirit is Taphthartharath; it is associated with the deities Mercurius and Ceres, and the angels Raphael and Hamaliel. It is associated with the intestines and digestive system."
   },
   "populus": {
+    "id": "populus",
     "name": "Populus",
     "img": "populus.svg",
     "head": "passive",
@@ -90,6 +99,7 @@
     "description": "Latin for \"the People\". The figure resembles a bird's eye view of a group of people. The figure can mean that the outcome is based on the people of the situation, or represents a large number of people or peers. Astrologically it is associated with Cancer and the waxing Moon; both its inner and outer elements are water. It refers to a gathering or assembly of people and is very neutral, for though there may be a great deal of movement within the crowd, there is very little effect on the crowd as a whole. It is favorable with favorable figures, and unfavorable with unfavorable ones. Its planetary ruler is Chashmodai, its Intelligence is the Intelligence of Intelligences Malkah beTarshishim ve-ad Ruachoth Shechalim, and its Spirit is the Spirit of Spirits is Shad Barshemoth ha-Shartathan. It is associated with the deities Diana and Mercurius, and the angels Gabriel and Muriel. It is associated with the breasts and torso. There is another opinion on Populus and it's associated with Aquarius by Henrich Cornelius Agrippa in his book \"Of Geomancy\",Puella and Rubeus being associated with Cancer by this great magician."
   },
   "via": {
+    "id": "via",
     "name": "Via",
     "img": "via.svg",
     "head": "active",
@@ -100,6 +110,7 @@
     "description": "Latin for \"the Way\". The figure resembles a road or path. It is considered bad of most things, but good with concerns of roads, travels, or journeys. Astrologically it is associated with Cancer and the waning Moon and both its inner and outer elements are water. All the elements in Via are active and as such the figure indicates change more than any other figure. Regarding the outcome of the situation being divined, it is neutral, unless change by itself infers a positive or negative result. This figure inverts any figure when added, giving it another meaning of change. Its planetary ruler is Chashmodai, its Intelligence is the Intelligence of Intelligences Malkah beTarshishim ve-ad Ruachoth Shechalim, and its Spirit is the Spirit of Spirits is Shad Barshemoth ha-Shartathan. It is associated with the deities Diana and Mercurius and the angels Gabriel and Muriel. It is associated with the stomach."
   },
   "albus": {
+    "id": "albus",
     "name": "Albus",
     "img": "albus.svg",
     "head": "passive",
@@ -110,6 +121,7 @@
     "description": "Latin for \"White\". The figure resembles an upright glass or goblet. It is good in most situations, especially with good figures in company, but itself is a weak figure. Astrologically it is associated with Gemini and Mercury; even though its inner element is water, its outer element is air. It represents peace, wisdom and purity. It benefits beginnings and profit, or any situation where careful and deliberate planning is needed. Its planetary intelligence is Tiriel and its spirit is Taphthartharath; it is associated with the deities Mercurius and Apollo, and the angels Raphael and Ambriel. It is associated with the shoulders and lungs."
   },
   "puella": {
+    "id": "puella",
     "name": "Puella",
     "img": "puella.svg",
     "head": "active",
@@ -120,6 +132,7 @@
     "description": "Latin for \"the Girl\". The figure is to resemble the vulva or a woman with exaggerated breasts. It is good in most situations, especially with women, beauty, or feminine situations. Astrologically it is associated with Libra and Venus; its outer element is air, but its inner element is water. It represents peace and passivity, which can be either positive or negative depending on the question being answered, though generally positive, requiring to be acted upon instead of it acting on a situation. It is the symbol of feminine sexuality, balancing the energy of Puer. Its planetary intelligence is Hagiel and its spirit is Kedemel; it is associated with the deities Venus and Vulcanus and the angels Anael and Zuriel. It is associated with the kidneys, lower back, buttocks, and skin."
   },
   "foruna-major": {
+    "id": "foruna-major",
     "name": "Fortuna Major",
     "img": "fortuna-major.svg",
     "head": "passive",
@@ -130,6 +143,7 @@
     "description": "Latin for \"the Greater Fortune\". The figure resembles blessings growing from the earth and being fruitful in the air. It is good in all situations in a best case scenario sense and represents great good fortune, especially in beginnings. Astrologically it is associated with Leo, like Fortuna Minor, but by the Sun in northern declinations. Its inner element is earth while its outer element is fire. It denotes power and success, and so is very favourable in conflicts and contests; being a figure of stability and long-term success, it also denotes hardship at the outset of an endeavor. Its planetary intelligence is Nakhiel and its spirit is Sorath; it is associated with the deities Apollo and Jupiter, and the angels Michael and Verchiel. It is associated with the heart and chest."
   },
   "tristitia": {
+    "id": "tristitia",
     "name": "Tristitia",
     "img": "tristitia.svg",
     "head": "passive",
@@ -140,6 +154,7 @@
     "description": "Latin for \"Sorrow\". The figure resembles a broken arch or a stake being driven into the ground. It is bad in most cases and connotes sadness or mourning. Astrologically it is associated with Aquarius and Saturn. Tristitia is an unfavorable figure in almost all questions, usually representing pain and suffering. However, it is favorable in questions dealing with stability, building, or the Earth (such as agriculture). Its outer element is air and inner element is earth. Its planetary intelligence is Agiel and its spirit is Zazel; it is associated with the deities Saeturnus and Juno, and the angels Cassiel and Gabriel. It is associated with the ankles and lower legs."
   },
   "cauda-draconis": {
+    "id": "cauda-draconis",
     "name": "Cauda Draconis",
     "img": "cauda-draconis.svg",
     "head": "active",
@@ -150,6 +165,7 @@
     "description": "Latin for \"the Tail of the Dragon\" and the figure of the south node of the Moon. It is considered very bad in most situations, such that in older traditions if this was the first figure drawn the geomancy reading was stopped. It is only good in circumstances for ending or completing things, such as breaking up a relationship. It brings good with evil, and evil with good. It is associated with the malefic planets Saturn and Mars and the astrological sign Virgo. Its inner and outer element are both fire. Its planetary intelligences are Agiel and Graphiel and its spirits are Zazel and Bartzabel; it is associated with the deities Mavors, Saeturnus, and Athena, and the angels Cassiel, Samael and Malchidael. It is associated with the left arm."
   },
   "carcer": {
+    "id": "carcer",
     "name": "Carcer",
     "img": "carcer.svg",
     "head": "active",

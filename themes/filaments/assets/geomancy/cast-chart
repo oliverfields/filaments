@@ -1,10 +1,5 @@
 ﻿<html>
 <head>
-  <style>
-td {
-text-align: center;
-}
-  </style>
 <script src="shield-chart.js"></script>
 </head>
 <body>
@@ -21,7 +16,7 @@ const chartJson = sc.cast(["figures.json"]).then(
     //jsonTextarea.innerHTML = "&lt;script&gt;\n" + JSON.stringify(sc.chartJson(), null, 2) + "\n&lt;/script&gt;";
     //document.body.appendChild(jsonTextarea);
 
-    let chartTxt = "Template: geomancy.mako\n\n*What do I need to understand about today?*\n\n<pre class=\"shield-chart\">" + sc.chartText() + "</pre>\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
+    let chartTxt = "Template: geomancy.mako\nFirst mother: " + sc.chart.firstRow.firstMother.id + "\nSecond mother: " + sc.chart.firstRow.secondMother.id + "\nThird mother: " + sc.chart.firstRow.thirdMother.id + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id + "\n\n*What do I need to understand about today?*\n\n<pre id=\"shield-chart\">" + sc.chartText() + "</pre>\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
 
     let copyBtn = document.createElement("button");
     copyBtn.innerHTML = "Copy Markdown template";
