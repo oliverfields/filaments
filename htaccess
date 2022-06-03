@@ -11,16 +11,16 @@ Require valid-user
 <IfModule mod_rewrite.c>
   RewriteEngine on 
 
-  # Rewrite favicon.ico
-  RewriteRule ^favicon\.ico$ /assets/theme/images/favicon.ico [NC,L]
-
   # Redirect to https
   RewriteCond %{HTTPS} off
   RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  
+  RewriteRule ^favicon\.ico$ /assets/theme/images/favicon.ico [NC,L]
+  RewriteRule ^geomancy/(.*)$ /assets/theme/geomancy/$1 [NC,L]
+
 </IfModule>
 
-# Force text/html for all files
+# Force text/html for all files without a file extension
 <FilesMatch "^[^.]+$">
-#<FilesMatch "\.*">
   ForceType text/html
 </FilesMatch>
