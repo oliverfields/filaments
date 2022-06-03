@@ -1,0 +1,41 @@
+﻿<html>
+<head>
+  <style>
+td {
+text-align: center;
+}
+  </style>
+<script src="shield-chart.js"></script>
+</head>
+<body>
+<script>
+
+sc = Object.create(ShieldChart);
+
+const chartJson = sc.cast(["http://localhost:8000/figures.json"]).then(
+  // Success
+  function() {
+    document.body.appendChild(sc.chartHtml());
+
+    //let jsonTextarea = document.createElement('textarea');
+    //jsonTextarea.innerHTML = "&lt;script&gt;\n" + JSON.stringify(sc.chartJson(), null, 2) + "\n&lt;/script&gt;";
+    //document.body.appendChild(jsonTextarea);
+
+    let chartPre = document.createElement("pre");
+    chartPre.innerHTML = "*What do I need to understand about today?*\n\n&lt;div class=\"shield-chart\"&gt;" + sc.chartText() + "&lt;/div&gt;\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
+    chartPre.setAttribute("class", "md-template");
+
+    let copyBtn = document.createElement("button");
+    copyBtn.innerHTML = "Copy Markdown template";
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(chartPre.innerHTML);
+    }
+    document.body.appendChild(chartPre);
+    document.body.appendChild(copyBtn);
+  },
+  // Failure
+  function() { console.log("Unable to cast chart:(") }
+);
+</script>
+</body>
+</html>
