@@ -43,8 +43,8 @@ const ShieldChart = {
     let sumFig = this.lookupFigureByRows(head, neck, body, feet);
     return sumFig;
   },
-  castChart: function(json, firstMother=false, secondMother=false, thirdMother=false, fourthMother=false) {
-    this.figures = json;
+  castChart: function(jsonData, firstMother=false, secondMother=false, thirdMother=false, fourthMother=false) {
+    this.figures = jsonData;
 
     firstMother ? firstMother = this.lookupFigureByName(firstMother) : firstMother = this.getRandomFigure();
 
@@ -360,20 +360,53 @@ const ShieldChart = {
     },
   },
   cast: async function(urls, firstMother=false, secondMother=false, thirdMother=false, fourthMother=false) {
-  var jsons = await Promise.all(
-    urls.map(url => fetch(url).then(
-      (response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Unable to fetch ' + url);
-    })
-    .catch((error) => {
-      // If can't get the JSONs then just give up
-      throw error;
-    }))
-  );
+    var jsons = await Promise.all(
+      urls.map(url => fetch(url).then(
+        (response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Unable to fetch ' + url);
+      })
+      .catch((error) => {
+        // If can't get the JSONs then just give up
+        throw error;
+      }))
+    );
+    return this.castChart(jsons[0], firstMother, secondMother, thirdMother, fourthMother);
+  },
+  houseChartTemplate: function() {
+    let template = "s     11     / s      9     /\n"
+      + " s    h11   /10 s   h09    / \n"
+      + "  s   n11  / h10 s  n09   /  \n"
+      + "   s  b11 /  b10  s b09  /   \n"
+      + " 12 s f11/   b10   sf09 /  8 \n"
+      + " h12 s  /    f10    s  / h08 \n"
+      + " n12  s/_____________s/  n08 \n"
+      + " b12  /|             |s  b08 \n"
+      + " f12 / |  14     13  | s f08 \n"
+      + "    /  |  h14   h13  |  s    \n"
+      + "   /  1|  n14   n13  |7  s   \n"
+      + "  / h01|  b14   b13  |h07 s  \n"
+      + " /  n01|  f14   f13  |n07  s \n"
+      + " s  b01|     15      |b07  / \n"
+      + "  s f01|     h15     |f07 /  \n"
+      + "   s   |     n15     |   /   \n"
+      + " 2  s  |     b15     |  /  6 \n"
+      + " h02 s |     f15     | / h06 \n"
+      + " n02  s|_____________|/  n06 \n"
+      + " b02  /s     4       /s  b06 \n"
+      + " f02 /  s   h04     /  s f06 \n"
+      + "    / 3  s  n04    /  5 s    \n"
+      + "   /  h03 s b04   / h05  s   \n"
+      + "  /   n03  sf04  /  n05   s  \n"
+      + " /    b03   s   /   b05    s \n"
+      + "/     f03    s /    f05     s";
 
-  return this.castChart(jsons[0], firstMother, secondMother, thirdMother, fourthMother);
+    return template.replace(/s/g, "\\");
+  },
+  houseChartText: function() {
+    console.log("coming");
+    return "hello";
   }
 };

@@ -26,8 +26,7 @@
 
         let castH1 = document.getElementsByTagName("H1")[0];
         castH1.parentNode.insertBefore(copyBtn, castH1.nextSibling)
-        //castDiv.appendChild(copyBtn);
-        //castDiv.appendChild(sc.chartHtml());
+        alert(sc.houseChartTemplate());
       },
       // Failure
       function() { console.log("Unable to cast chart:(") }
