@@ -446,5 +446,124 @@ const ShieldChart = {
       });
     }
     return houseChart;
+  },
+  houseChartHtml: function() {
+    var zodiacSymbol = {
+      taurus: "\u2649",
+      cancer: "\u264B",
+      sagittarius: "\u2650",
+      capricorn: "\u2651",
+      scorpius: "\u264F",
+      aquarius: "\u2652",
+      pisces: "\u2653",
+      virgo: "\u264D",
+      aries: "\u2648",
+      leo: "\u264C",
+      libra: "\u264E",
+      gemini: "\u264A",
+    }
+    // 0 = 1st house, etc
+    var housesXy = [ 
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10],
+      [0, 10]
+    ]
+    var canvas = document.createElement("canvas");
+    canvas.width = 420;
+    canvas.height = 420;
+    var c = canvas.getContext("2d");
+    c.beginPath();
+
+    c.strokeStyle = "#999999";
+
+    // Border
+    c.rect(x=0, y=0, w=420, h=420);
+
+    // Outer square
+    c.rect(x=30, y=30, w=360, h=360);
+
+    // Inner square
+    c.rect(x=120, y=120, w=180, h=180);
+
+    // Wiggles
+    c.moveTo(30, 30);
+    c.lineTo(120, 120);
+    c.moveTo(30, 390);
+    c.lineTo(120, 300);
+    c.moveTo(300, 120);
+    c.lineTo(390, 30);
+    c.moveTo(300, 300);
+    c.lineTo(390, 390);
+
+    // Middle square
+    c.moveTo(210, 30);
+    c.lineTo(30, 210);
+    c.moveTo(210, 30);
+    c.lineTo(390, 210);
+    c.moveTo(30, 210);
+    c.lineTo(210, 390);
+    c.moveTo(210, 390);
+    c.lineTo(390, 210);
+
+    c.font = "16px Courier";
+    c.fillText(zodiacSymbol.aries, 109, 21);
+    c.fillText(zodiacSymbol.pisces, 199, 21);
+    c.fillText(zodiacSymbol.aquarius, 289, 21);
+
+    c.fillText(zodiacSymbol.capricorn, 395, 125);
+    c.fillText(zodiacSymbol.sagittarius, 395, 215);
+    c.fillText(zodiacSymbol.scorpius, 395, 305);
+
+    c.fillText(zodiacSymbol.leo, 109, 411);
+    c.fillText(zodiacSymbol.virgo, 199, 411);
+    c.fillText(zodiacSymbol.libra, 289, 411);
+
+    c.fillText(zodiacSymbol.taurus, 4, 125);
+    c.fillText(zodiacSymbol.gemini, 4, 215);
+    c.fillText(zodiacSymbol.cancer, 4, 305);
+
+    this.addFigureToCanvas(c, this.chart.firstRow.firstMother, x=70, y=90);
+    this.addFigureToCanvas(c, this.chart.firstRow.secondMother, x=70, y=190);
+    this.addFigureToCanvas(c, this.chart.firstRow.thirdMother, x=50, y=270);
+    this.addFigureToCanvas(c, this.chart.firstRow.fourthMother, x=70, y=330);
+    this.addFigureToCanvas(c, this.chart.firstRow.firstDaughter, x=50, y=10);
+    this.addFigureToCanvas(c, this.chart.firstRow.secondDaughter, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.firstRow.thirdDaughter, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.firstRow.fourthDaughter, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.secondRow.firstNiece, x=10, y=10);
+    this.addFigureToCanvas(c, this.chart.secondRow.secondNiece, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.secondRow.thirdNiece, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.secondRow.fourthNiece, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.thirdRow.leftWitness, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.thirdRow.rightWitness, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.fourthRow.judge, x=20, y=10);
+   c.stroke();
+
+    return canvas;
+  },
+  addFigureToCanvas(c, figure, x, y) {
+    console.log(figure);
+    let head = (figure.head == "active") ? " ♦ " : "♦ ♦";
+    let neck = (figure.neck == "active") ? " ♦ " : "♦ ♦";
+    let body = (figure.body == "active") ? " ♦ " : "♦ ♦";
+    let feet = (figure.feet == "active") ? " ♦ " : "♦ ♦";
+
+
+    c.font = "20px Courier";
+    c.fillText(head, x, y);
+    c.fillText(neck, x, y + 15);
+    c.fillText(body, x, y + 30);
+    c.fillText(feet, x, y + 45);
+
+ 
   }
 };
