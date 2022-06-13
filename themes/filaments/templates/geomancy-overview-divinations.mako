@@ -15,7 +15,7 @@
     const chartJson = sc.cast(["/assets/theme/geomancy/figures.json"]).then(
       // Success
       function() {
-        let chartTxt = "Template: geomancy.mako\nFirst mother: " + sc.chart.firstRow.firstMother.id + "\nSecond mother: " + sc.chart.firstRow.secondMother.id + "\nThird mother: " + sc.chart.firstRow.thirdMother.id + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id + "\n\n*What do I need to understand about today?*\n\n<pre id=\"shield-chart\">" + sc.chartText() + "</pre>\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
+        let chartTxt = "Template: geomancy.mako\nFirst mother: " + sc.chart.firstRow.firstMother.id + "\nSecond mother: " + sc.chart.firstRow.secondMother.id + "\nThird mother: " + sc.chart.firstRow.thirdMother.id + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id + "\n\n*What do I need to understand about today?*\n\n<pre id=\"house-chart\">\n" + sc.houseChartText() + "\n</pre>\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
 
         let copyBtn = document.createElement("button");
         copyBtn.innerHTML = "🎲 Cast to clipboard";
@@ -26,7 +26,6 @@
 
         let castH1 = document.getElementsByTagName("H1")[0];
         castH1.parentNode.insertBefore(copyBtn, castH1.nextSibling)
-        alert(sc.houseChartTemplate());
       },
       // Failure
       function() { console.log("Unable to cast chart:(") }

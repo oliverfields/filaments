@@ -376,28 +376,29 @@ const ShieldChart = {
     return this.castChart(jsons[0], firstMother, secondMother, thirdMother, fourthMother);
   },
   houseChartTemplate: function() {
-    let template = "s     11     / s      9     /\n"
-      + " s    h11   /10 s   h09    / \n"
+    let template = 
+        "s     11.    / s     9.     /\n"
+      + " s    h11   /10.s   h09    / \n"
       + "  s   n11  / h10 s  n09   /  \n"
-      + "   s  b11 /  b10  s b09  /   \n"
-      + " 12 s f11/   b10   sf09 /  8 \n"
+      + "   s  b11 /  n10  s b09  /   \n"
+      + " 12.s f11/   b10   sf09 / 8. \n"
       + " h12 s  /    f10    s  / h08 \n"
       + " n12  s/_____________s/  n08 \n"
       + " b12  /|             |s  b08 \n"
-      + " f12 / |  14     13  | s f08 \n"
+      + " f12 / |  14.   13.  | s f08 \n"
       + "    /  |  h14   h13  |  s    \n"
-      + "   /  1|  n14   n13  |7  s   \n"
+      + "   /1. |  n14   n13  | 7.s   \n"
       + "  / h01|  b14   b13  |h07 s  \n"
       + " /  n01|  f14   f13  |n07  s \n"
-      + " s  b01|     15      |b07  / \n"
+      + " s  b01|     15.     |b07  / \n"
       + "  s f01|     h15     |f07 /  \n"
       + "   s   |     n15     |   /   \n"
-      + " 2  s  |     b15     |  /  6 \n"
+      + " 2. s  |     b15     |  / 6. \n"
       + " h02 s |     f15     | / h06 \n"
       + " n02  s|_____________|/  n06 \n"
-      + " b02  /s     4       /s  b06 \n"
+      + " b02  /s     4.      /s  b06 \n"
       + " f02 /  s   h04     /  s f06 \n"
-      + "    / 3  s  n04    /  5 s    \n"
+      + "    / 3. s  n04    / 5. s    \n"
       + "   /  h03 s b04   / h05  s   \n"
       + "  /   n03  sf04  /  n05   s  \n"
       + " /    b03   s   /   b05    s \n"
@@ -406,7 +407,44 @@ const ShieldChart = {
     return template.replace(/s/g, "\\");
   },
   houseChartText: function() {
-    console.log("coming");
-    return "hello";
+    // Replace hXX with figure head, nXX with figure neck etc in houseChartTemplate
+    let symbol = "♦";
+    let figureRows = ["head", "neck", "body", "feet"];
+    let shieldToHouseChartMapping = {
+      "firstMother": "01",
+      "secondMother": "02",
+      "thirdMother": "03",
+      "fourthMother": "04",
+      "firstDaughter": "05",
+      "secondDaughter": "06",
+      "thirdDaughter": "07",
+      "fourthDaughter": "08",
+      "firstNiece": "09",
+      "secondNiece": "10",
+      "thirdNiece": "11",
+      "fourthNiece": "12",
+      "rightWitness": "13",
+      "leftWitness": "14",
+      "judge": "15"
+    }
+    let houseChart = this.houseChartTemplate();
+
+    for (const [keyLine, line] of Object.entries(this.chart)) {
+
+      figureRows.forEach(function(row) {
+        for (const [keyFig, figure] of Object.entries(line).reverse()) {
+          if (keyFig != "sentence") {
+            if (figure[row] == "active") {
+              symbolStr = " " + symbol + " ";
+            }
+            else {
+              symbolStr = symbol + " " + symbol;
+            }
+            houseChart = houseChart.replace(row.charAt(0) + shieldToHouseChartMapping[keyFig], symbolStr);
+          }
+        }
+      });
+    }
+    return houseChart;
   }
 };

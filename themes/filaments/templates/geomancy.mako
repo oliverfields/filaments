@@ -17,8 +17,8 @@
       ).then(
         // Success
         function() {
-          const preSc = document.getElementById("shield-chart");
-          preSc.replaceChildren(sc.chartHtml());
+          const preSc = document.getElementById("house-chart");
+          preSc.innerHTML(sc.houseChartText());
         },
         // Failure
         function() { console.log("Unable to cast chart:(") }
