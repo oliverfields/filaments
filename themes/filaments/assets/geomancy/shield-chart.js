@@ -447,6 +447,23 @@ const ShieldChart = {
     }
     return houseChart;
   },
+  drawHelperGrid: function(c) {
+    c.strokeStyle = "#FF0000";
+
+    // Draw horizontal lines
+    for (var x = 0; x < 420; x += 30) {
+      c.moveTo(x, 0);
+      c.lineTo(x, 420);
+    }
+
+    // Draw vertical lines
+    for (var y = 0; y < 420; y += 30) {
+      c.moveTo(0, y);
+      c.lineTo(420, y);
+    }
+
+    c.stroke();
+  },
   houseChartHtml: function() {
     var zodiacSymbol = {
       taurus: "\u2649",
@@ -462,26 +479,30 @@ const ShieldChart = {
       libra: "\u264E",
       gemini: "\u264A",
     }
-    // 0 = 1st house, etc
-    var housesXy = [ 
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10],
-      [0, 10]
-    ]
+    var houseXy ={
+      house1: [72, 194],
+      house2: [42, 284],
+      house3: [102,334],
+      house4: [192,320],
+      house5: [282,334],
+      house6: [342, 284],
+      house7: [312,194],
+      house8: [342,104],
+      house9: [282,54],
+      house10: [192,68],
+      house11: [102,54],
+      house12: [42,104],
+      house13: [240,164],
+      house14: [144,164],
+      house15: [192,224]
+    };
     var canvas = document.createElement("canvas");
     canvas.width = 420;
     canvas.height = 420;
     var c = canvas.getContext("2d");
     c.beginPath();
+
+    //this.drawHelperGrid(c);
 
     c.strokeStyle = "#999999";
 
@@ -531,27 +552,32 @@ const ShieldChart = {
     c.fillText(zodiacSymbol.gemini, 4, 215);
     c.fillText(zodiacSymbol.cancer, 4, 305);
 
-    this.addFigureToCanvas(c, this.chart.firstRow.firstMother, x=70, y=90);
-    this.addFigureToCanvas(c, this.chart.firstRow.secondMother, x=70, y=190);
-    this.addFigureToCanvas(c, this.chart.firstRow.thirdMother, x=50, y=270);
-    this.addFigureToCanvas(c, this.chart.firstRow.fourthMother, x=70, y=330);
-    this.addFigureToCanvas(c, this.chart.firstRow.firstDaughter, x=50, y=10);
-    this.addFigureToCanvas(c, this.chart.firstRow.secondDaughter, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.firstRow.thirdDaughter, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.firstRow.fourthDaughter, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.secondRow.firstNiece, x=10, y=10);
-    this.addFigureToCanvas(c, this.chart.secondRow.secondNiece, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.secondRow.thirdNiece, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.secondRow.fourthNiece, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.thirdRow.leftWitness, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.thirdRow.rightWitness, x=20, y=10);
-    this.addFigureToCanvas(c, this.chart.fourthRow.judge, x=20, y=10);
+    this.addFigureToCanvas(c, this.chart.firstRow.firstMother, houseXy.house1, " 1");
+    this.addFigureToCanvas(c, this.chart.firstRow.secondMother, houseXy.house2, " 2");
+    this.addFigureToCanvas(c, this.chart.firstRow.thirdMother, houseXy.house3, " 3");
+    this.addFigureToCanvas(c, this.chart.firstRow.fourthMother, houseXy.house4, " 4");
+    this.addFigureToCanvas(c, this.chart.firstRow.firstDaughter, houseXy.house5, " 5");
+    this.addFigureToCanvas(c, this.chart.firstRow.secondDaughter, houseXy.house6, " 6");
+    this.addFigureToCanvas(c, this.chart.firstRow.thirdDaughter, houseXy.house7, " 7");
+    this.addFigureToCanvas(c, this.chart.firstRow.fourthDaughter, houseXy.house8, " 8");
+    this.addFigureToCanvas(c, this.chart.secondRow.firstNiece, houseXy.house9, " 9");
+    this.addFigureToCanvas(c, this.chart.secondRow.secondNiece, houseXy.house10, "10");
+    this.addFigureToCanvas(c, this.chart.secondRow.thirdNiece, houseXy.house11, "11");
+    this.addFigureToCanvas(c, this.chart.secondRow.fourthNiece, houseXy.house12, "12");
+    this.addFigureToCanvas(c, this.chart.thirdRow.leftWitness, houseXy.house13, "13");
+    this.addFigureToCanvas(c, this.chart.thirdRow.rightWitness, houseXy.house14, "14");
+    this.addFigureToCanvas(c, this.chart.fourthRow.judge, houseXy.house15, "15");
    c.stroke();
+
+    canvas.setAttribute("id", "house-chart");
+    //canvas.style.width = "345px";
+    //canvas.style.height = "345px";
 
     return canvas;
   },
-  addFigureToCanvas(c, figure, x, y) {
-    console.log(figure);
+  addFigureToCanvas(c, figure, coords, houseNumber) {
+    let x = coords[0];
+    let y = coords[1];
     let head = (figure.head == "active") ? " ♦ " : "♦ ♦";
     let neck = (figure.neck == "active") ? " ♦ " : "♦ ♦";
     let body = (figure.body == "active") ? " ♦ " : "♦ ♦";
@@ -564,6 +590,7 @@ const ShieldChart = {
     c.fillText(body, x, y + 30);
     c.fillText(feet, x, y + 45);
 
- 
+    c.font = "10px Courier";
+    c.fillText(houseNumber, x - 11, y + 18);
   }
 };
