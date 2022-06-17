@@ -10,6 +10,57 @@
 
   <script src="/assets/theme/geomancy/shield-chart.js"></script>
   <script>
+    function figureSelect() {
+      let figSelect = document.createElement("select");
+      let figDefault = document.createElement("option");
+      figDefault.setAttribute("selected", "selected");
+      figDefault.setAttribute("value", "random");
+      figDefault.innerHTML = "Random figure";
+
+      figSelect.append(figDefault);
+
+      let figures = [
+        "laetitia",
+        "caput-draconis",
+        "fortuna-minor",
+        "amissio",
+        "puer",
+        "rubeus",
+        "acquisitio",
+        "conjunctio",
+        "populus",
+        "via",
+        "albus",
+        "puella",
+        "fortuna-major",
+        "tristitia",
+        "cauda-draconis",
+        "carcer"
+      ];
+
+      figures.sort(() => Math.random() - 0.5).forEach(function(fig) {
+        let figOption = document.createElement("option");
+        figOption.setAttribute("value", fig);
+        let name = fig.replace(/^(.)/, function(v) { return v.toUpperCase();});
+        name = name.replace(/-(.)/, function(v) { return v.toUpperCase();});
+        name = name.replace("-", " ");
+        figOption.innerHTML = name;
+        figSelect.append(figOption);
+      });
+
+      return figSelect;
+    }
+    let castForm = document.createElement("form");
+    let firstMotherSelect = figureSelect();
+    let secondMotherSelect = figureSelect();
+    let thirdMotherSelect = figureSelect();
+    let fourthMotherSelect = figureSelect();
+
+    let castH1 = document.getElementsByTagName("H1")[0];
+    castH1.parentNode.insertBefore(firstMotherSelect, castH1.nextSibling)
+    castH1.parentNode.insertBefore(secondMotherSelect, castH1.nextSibling)
+    castH1.parentNode.insertBefore(thirdMotherSelect, castH1.nextSibling)
+    castH1.parentNode.insertBefore(fourthMotherSelect, castH1.nextSibling)
     sc = Object.create(ShieldChart);
 
     const chartJson = sc.cast(["/assets/theme/geomancy/figures.json"]).then(
