@@ -6,3 +6,5 @@ build.conf
 content
 *.swp
 build_stats.csv
+media
+secrets.conf
