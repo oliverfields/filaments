@@ -10,12 +10,14 @@
 
   <script src="/assets/theme/geomancy/shield-chart.js"></script>
   <script>
-    function figureSelect() {
+    function figureSelect(name) {
       let figSelect = document.createElement("select");
+      figSelect.setAttribute("style", "margin: 0 .5em .5em 0;");
+
       let figDefault = document.createElement("option");
       figDefault.setAttribute("selected", "selected");
       figDefault.setAttribute("value", "random");
-      figDefault.innerHTML = "Random figure";
+      figDefault.innerHTML = "Random " + name;
 
       figSelect.append(figDefault);
 
@@ -50,36 +52,56 @@
 
       return figSelect;
     }
+
+
+    function castChart(firstMother, secondMother, thirdMother, fourthMother) {
+      sc = Object.create(ShieldChart);
+
+      const chartJson = sc.cast(["/assets/theme/geomancy/figures.json"], firstMother, secondMother, thirdMother, fourthMother).then(
+        // Success
+        function() {
+          let chartTxt = "Template: geomancy.mako\nFirst mother: " + sc.chart.firstRow.firstMother.id + "\nSecond mother: " + sc.chart.firstRow.secondMother.id + "\nThird mother: " + sc.chart.firstRow.thirdMother.id + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id + "\n\n*What do I need to understand about today?*\n\n<pre id=\"house-chart\">\n" + sc.houseChartText() + "\n</pre>\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
+
+          // Copy chart to clipboard
+          navigator.clipboard.writeText(chartTxt);
+        },
+        // Failure
+        function() { console.log("Unable to cast chart:(") }
+      );
+    }
+
+
     let castForm = document.createElement("form");
-    let firstMotherSelect = figureSelect();
-    let secondMotherSelect = figureSelect();
-    let thirdMotherSelect = figureSelect();
-    let fourthMotherSelect = figureSelect();
+
+    let firstMotherSelect = figureSelect("1st mama");
+    let secondMotherSelect = figureSelect("2nd mama");
+    let thirdMotherSelect = figureSelect("3rd mama");
+    let fourthMotherSelect = figureSelect("4th mama");
+
+    let castBtn = document.createElement("button");
+    castBtn.innerHTML = "🎲 Cast to clipboard";
+    castBtn.setAttribute("style", "display: block; margin-bottom: 1.5em;");
+    castBtn.addEventListener('click', function() {
+      let firstMother = firstMotherSelect.options[firstMotherSelect.selectedIndex].value;
+      let secondMother = secondMotherSelect.options[secondMotherSelect.selectedIndex].value;
+      let thirdMother = thirdMotherSelect.options[thirdMotherSelect.selectedIndex].value;
+      let fourthMother = fourthMotherSelect.options[fourthMotherSelect.selectedIndex].value;
+
+      firstMother = (firstMother == "random") ? false : firstMother;
+      secondMother = (secondMother == "random") ? false : secondMother;
+      thirdMother = (thirdMother == "random") ? false : thirdMother;
+      fourthMother = (fourthMother == "random") ? false : fourthMother;
+
+      castChart(firstMother, secondMother, thirdMother, fourthMother);
+    });
+
 
     let castH1 = document.getElementsByTagName("H1")[0];
-    castH1.parentNode.insertBefore(firstMotherSelect, castH1.nextSibling)
-    castH1.parentNode.insertBefore(secondMotherSelect, castH1.nextSibling)
-    castH1.parentNode.insertBefore(thirdMotherSelect, castH1.nextSibling)
+    castH1.parentNode.insertBefore(castBtn, castH1.nextSibling)
     castH1.parentNode.insertBefore(fourthMotherSelect, castH1.nextSibling)
-    sc = Object.create(ShieldChart);
+    castH1.parentNode.insertBefore(thirdMotherSelect, castH1.nextSibling)
+    castH1.parentNode.insertBefore(secondMotherSelect, castH1.nextSibling)
+    castH1.parentNode.insertBefore(firstMotherSelect, castH1.nextSibling)
 
-    const chartJson = sc.cast(["/assets/theme/geomancy/figures.json"]).then(
-      // Success
-      function() {
-        let chartTxt = "Template: geomancy.mako\nFirst mother: " + sc.chart.firstRow.firstMother.id + "\nSecond mother: " + sc.chart.firstRow.secondMother.id + "\nThird mother: " + sc.chart.firstRow.thirdMother.id + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id + "\n\n*What do I need to understand about today?*\n\n<pre id=\"house-chart\">\n" + sc.houseChartText() + "\n</pre>\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
-
-        let copyBtn = document.createElement("button");
-        copyBtn.innerHTML = "🎲 Cast to clipboard";
-        copyBtn.onclick = () => {
-          navigator.clipboard.writeText(chartTxt);
-        }
-        copyBtn.setAttribute("style", "display: block; margin-bottom: 1.5em;");
-
-        let castH1 = document.getElementsByTagName("H1")[0];
-        castH1.parentNode.insertBefore(copyBtn, castH1.nextSibling)
-      },
-      // Failure
-      function() { console.log("Unable to cast chart:(") }
-    );
-  </script>
+ </script>
 </%block>
