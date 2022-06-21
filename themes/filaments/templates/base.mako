@@ -40,7 +40,7 @@
       <div id="next-link"><a href="${page.next_page.url_path}">${page.next_page.title} &#9654;</a></div>
       % endif
     </div><!-- /prev-next-links -->
-    <footer>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')}</footer>
+    <footer>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')} UTC</footer>
     <script>
 // Site search
 search_query_text = '';

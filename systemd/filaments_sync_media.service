@@ -1,0 +1,8 @@
+[Unit]
+After=network.target
+
+[Service]
+ExecStart=/home/oliver/Documents/Projects/filaments/systemd/media_watch_sync.sh
+
+[Install]
+WantedBy=default.target

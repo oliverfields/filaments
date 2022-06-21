@@ -1,6 +1,8 @@
 https://linuxconfig.org/how-to-run-script-on-startup-on-ubuntu-22-04-jammy-jellyfish-server-desktop
 
 Useful commands:
+sudo systemctl daemon-reload
+sudo systemctl enable disk-space-check.service
 sudo systemctl status filaments_deploy_on_content_change.service
 sudo systemctl restart filaments_deploy_on_content_change.service
 
