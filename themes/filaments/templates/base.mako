@@ -32,14 +32,6 @@
     <article class="note-wide">
       <%block name="content" />
     </article>
-    <div class="prev-next-links">
-      % if page.previous_page:
-      <div id="previous-link"><a href="${page.previous_page.url_path}">&#9664; ${page.previous_page.title}</a></div>
-      % endif
-      % if page.next_page:
-      <div id="next-link"><a href="${page.next_page.url_path}">${page.next_page.title} &#9654;</a></div>
-      % endif
-    </div><!-- /prev-next-links -->
     <footer>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')} UTC</footer>
     <script>
 // Site search
