@@ -591,27 +591,78 @@ const ShieldChart = {
     c.fillText(feet, x, y + 45);
 
     c.font = "10px Courier";
-    c.fillText(houseNumber, x - 11, y + 13);
+    c.fillText(houseNumber, x - 11, y - 6);
 
-
-    let rulingElement = false;
-    switch(figure.element) {
-      case "Fire":
-        rulingElement = "🔥";
+    let innerElement = false;
+    switch(figure.innerElement) {
+      case "fire":
+        innerElement = "🔥";
         break;
-      case "Air":
-        rulingElement = "💨";
+      case "air":
+        innerElement = "💨";
         break;
-      case "Water":
-        rulingElement = "💧";
+      case "water":
+        innerElement = "💧";
         break;
-      case "Earth":
-        rulingElement = "🌍";
+      case "earth":
+        innerElement = "🌍";
         break;
       default:
-        console.log("Figure " + figure.name + ": Unknown element " + figure.element)
+        console.log("Figure " + figure.name + ": Unknown innerElement " + figure.innerElement)
     }
-    c.fillText(rulingElement, x - 11, y + 24);
-    console.log(rulingElement);
+    c.fillText(innerElement, x - 11, y + 5);
+
+    let outerElement = false;
+    switch(figure.outerElement) {
+      case "fire":
+        outerElement = "🔥";
+        break;
+      case "air":
+        outerElement = "💨";
+        break;
+      case "water":
+        outerElement = "💧";
+        break;
+      case "earth":
+        outerElement = "🌍";
+        break;
+      default:
+        console.log("Figure " + figure.name + ": Unknown outerElement " + figure.outerElement)
+    }
+    c.fillText(outerElement, x - 11, y + 16);
+
+    let quality = (figure.quality == "mobile") ? "🐇" : "🐌";
+    c.fillText(quality, x - 11, y + 27);
+
+    let planet = false;
+    switch(figure.planet) {
+      case "saturn":
+        planet = "♄";
+        break;
+      case "jupiter":
+        planet = "♃";
+        break;
+      case "mars":
+        planet = "♂";
+        break;
+      case "sun":
+        planet = "☉";
+        break;
+      case "venus":
+        planet = "♀";
+        break;
+      case "mercury":
+        planet = "☿";
+        break;
+      case "moon":
+        planet = "☾";
+        break;
+      case "lunar nodes":
+        planet = "☋";
+        break;
+      default:
+        console.log("Figure " + figure.name + ": Unknown planet " + figure.planet)
+    }
+    c.fillText(planet, x - 11, y + 38);
   }
 };
