@@ -657,8 +657,11 @@ const ShieldChart = {
       case "moon":
         planet = "☾";
         break;
-      case "lunar nodes":
+      case "southern lunar node":
         planet = "☋";
+        break;
+      case "northern lunar node":
+        planet = "☊";
         break;
       default:
         console.log("Figure " + figure.name + ": Unknown planet " + figure.planet)
