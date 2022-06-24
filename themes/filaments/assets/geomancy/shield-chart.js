@@ -552,15 +552,15 @@ const ShieldChart = {
     c.fillText(zodiacSymbol.gemini, 4, 215);
     c.fillText(zodiacSymbol.cancer, 4, 305);
 
-    this.addFigureToCanvas(c, this.chart.firstRow.firstMother, houseXy.house1, " 1");
-    this.addFigureToCanvas(c, this.chart.firstRow.secondMother, houseXy.house2, " 2");
-    this.addFigureToCanvas(c, this.chart.firstRow.thirdMother, houseXy.house3, " 3");
-    this.addFigureToCanvas(c, this.chart.firstRow.fourthMother, houseXy.house4, " 4");
-    this.addFigureToCanvas(c, this.chart.firstRow.firstDaughter, houseXy.house5, " 5");
-    this.addFigureToCanvas(c, this.chart.firstRow.secondDaughter, houseXy.house6, " 6");
-    this.addFigureToCanvas(c, this.chart.firstRow.thirdDaughter, houseXy.house7, " 7");
-    this.addFigureToCanvas(c, this.chart.firstRow.fourthDaughter, houseXy.house8, " 8");
-    this.addFigureToCanvas(c, this.chart.secondRow.firstNiece, houseXy.house9, " 9");
+    this.addFigureToCanvas(c, this.chart.firstRow.firstMother, houseXy.house1, "1 ");
+    this.addFigureToCanvas(c, this.chart.firstRow.secondMother, houseXy.house2, "2 ");
+    this.addFigureToCanvas(c, this.chart.firstRow.thirdMother, houseXy.house3, "3 ");
+    this.addFigureToCanvas(c, this.chart.firstRow.fourthMother, houseXy.house4, "4 ");
+    this.addFigureToCanvas(c, this.chart.firstRow.firstDaughter, houseXy.house5, "5 ");
+    this.addFigureToCanvas(c, this.chart.firstRow.secondDaughter, houseXy.house6, "6 ");
+    this.addFigureToCanvas(c, this.chart.firstRow.thirdDaughter, houseXy.house7, "7 ");
+    this.addFigureToCanvas(c, this.chart.firstRow.fourthDaughter, houseXy.house8, "8 ");
+    this.addFigureToCanvas(c, this.chart.secondRow.firstNiece, houseXy.house9, "9 ");
     this.addFigureToCanvas(c, this.chart.secondRow.secondNiece, houseXy.house10, "10");
     this.addFigureToCanvas(c, this.chart.secondRow.thirdNiece, houseXy.house11, "11");
     this.addFigureToCanvas(c, this.chart.secondRow.fourthNiece, houseXy.house12, "12");
@@ -591,6 +591,27 @@ const ShieldChart = {
     c.fillText(feet, x, y + 45);
 
     c.font = "10px Courier";
-    c.fillText(houseNumber, x - 11, y + 18);
+    c.fillText(houseNumber, x - 11, y + 13);
+
+
+    let rulingElement = false;
+    switch(figure.element) {
+      case "Fire":
+        rulingElement = "🔥";
+        break;
+      case "Air":
+        rulingElement = "💨";
+        break;
+      case "Water":
+        rulingElement = "💧";
+        break;
+      case "Earth":
+        rulingElement = "🌍";
+        break;
+      default:
+        console.log("Figure " + figure.name + ": Unknown element " + figure.element)
+    }
+    c.fillText(rulingElement, x - 11, y + 24);
+    console.log(rulingElement);
   }
 };

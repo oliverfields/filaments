@@ -3,7 +3,7 @@
 	<div>
 	<a class="article-meta-title" href="/${site.tag_dir}">Tagged</a>
 	% for t in page.headers['tags']:
-		<a href="/${site.tag_dir}/${t}">${t}</a>${'' if loop.last else ', '}
+		<a href="${site.tags[t]['url']}">${t}</a>${'' if loop.last else ', '}
 	% endfor
 	</div>
 % endif
@@ -11,7 +11,7 @@
 	<div>
 	<a class="article-meta-title" href="${site.category_dir}">Categorized</a>
 	% for c in page.headers['categories']:
-		<a href="/${site.category_dir}/${c}">${c}</a>${'' if loop.last else ', '}
+		<a href="${site.categories[c]['url']}">${c}</a>${'' if loop.last else ', '}
 	% endfor
 	</div>
 % endif
