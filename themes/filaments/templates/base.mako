@@ -34,38 +34,66 @@
     </article>
     <footer>Build ${datetime.now().strftime('%Y-%m-%d %H:%M')} UTC</footer>
     <script>
-// Site search
-search_query_text = '';
-query_string = window.location.search.substring(1).split('&');
-for (let i = 0; i < query_string.length; i++) {
-  let key_value = query_string[i].split('=');
-  if(key_value[0] == 'q') {
-    search_query_text = key_value[1];
-    break;
+function addSearchForm() {
+  // Site search
+  search_query_text = '';
+  query_string = window.location.search.substring(1).split('&');
+  for (let i = 0; i < query_string.length; i++) {
+    let key_value = query_string[i].split('=');
+    if(key_value[0] == 'q') {
+      search_query_text = key_value[1];
+      break;
+    }
   }
+
+  const nav = document.getElementsByTagName('nav')[0];
+
+  const form = document.createElement('form');
+  form.setAttribute('action', '/search');
+  form.setAttribute('method', 'GET');
+
+  const query_field = document.createElement('input');
+  query_field.setAttribute('type', 'text');
+  query_field.setAttribute('name', 'q');
+  query_field.setAttribute('id', 'search-query');
+  query_field.setAttribute('value', search_query_text);
+
+  const submit_query = document.createElement('input');
+  submit_query.setAttribute('type', 'submit');
+  submit_query.setAttribute('value', '🔍');
+  submit_query.setAttribute('id', 'search-button');
+
+  form.appendChild(query_field);
+  form.appendChild(submit_query);
+
+  nav.appendChild(form);
 }
+addSearchForm();
 
-const nav = document.getElementsByTagName('nav')[0];
+function addCopyLinkAsMarkdown() {
+  // Add an icon to copy link as Markdown syntax
 
-const form = document.createElement('form');
-form.setAttribute('action', '/search');
-form.setAttribute('method', 'GET');
+  let ac = document.getElementById("article-content");
 
-const query_field = document.createElement('input');
-query_field.setAttribute('type', 'text');
-query_field.setAttribute('name', 'q');
-query_field.setAttribute('id', 'search-query');
-query_field.setAttribute('value', search_query_text);
+  if (ac === null) {
+    return;
+  }
 
-const submit_query = document.createElement('input');
-submit_query.setAttribute('type', 'submit');
-submit_query.setAttribute('value', '🔍');
-submit_query.setAttribute('id', 'search-button');
-
-form.appendChild(query_field);
-form.appendChild(submit_query);
-
-nav.appendChild(form);
+  let links = ac.getElementsByTagName("A");
+  Array.prototype.slice.call(links).forEach(l => {
+    let copyIcon = document.createElement("img");
+    copyIcon.setAttribute("src", "/assets/theme/images/markdown-logo.svg");
+    copyIcon.setAttribute("style", "cursor: pointer; opacity: .7;");
+    copyIcon.setAttribute("width", "16");
+    copyIcon.setAttribute("height", "16");
+    copyIcon.setAttribute("alt", "Copy");
+    copyIcon.addEventListener('click', function() {
+      navigator.clipboard.writeText("[" + l.innerHTML + "](" + l.href + ")");
+    });
+    l.parentNode.insertBefore(copyIcon, l.nextSibling)
+  });
+}
+addCopyLinkAsMarkdown();
     </script>
   </body>
 </html>
