@@ -482,9 +482,9 @@ const ShieldChart = {
     var houseXy ={
       house1: [72, 194],
       house2: [42, 284],
-      house3: [102,334],
+      house3: [103,335],
       house4: [192,320],
-      house5: [282,334],
+      house5: [283,335],
       house6: [342, 284],
       house7: [312,194],
       house8: [342,104],
@@ -496,6 +496,14 @@ const ShieldChart = {
       house14: [240,164],
       house15: [192,224]
     };
+
+    let xOffset = 5;
+    let yOffset = 0;
+    Object.keys(houseXy).forEach(key => {
+      houseXy[key][0] += xOffset;
+      houseXy[key][1] += yOffset;
+    });
+
     var canvas = document.createElement("canvas");
     canvas.width = 420;
     canvas.height = 420;
@@ -591,7 +599,7 @@ const ShieldChart = {
     c.fillText(feet, x, y + 45);
 
     c.font = "10px Courier";
-    c.fillText(houseNumber, x - 11, y - 6);
+    c.fillText(houseNumber, x - 10, y - 6);
 
     let innerElement = false;
     switch(figure.innerElement) {
@@ -610,7 +618,7 @@ const ShieldChart = {
       default:
         console.log("Figure " + figure.name + ": Unknown innerElement " + figure.innerElement)
     }
-    c.fillText(innerElement, x - 11, y + 5);
+    c.fillText(innerElement, x - 11, y + 7);
 
     let outerElement = false;
     switch(figure.outerElement) {
@@ -629,10 +637,10 @@ const ShieldChart = {
       default:
         console.log("Figure " + figure.name + ": Unknown outerElement " + figure.outerElement)
     }
-    c.fillText(outerElement, x - 11, y + 16);
+    c.fillText(outerElement, x - 11, y + 19);
 
     let quality = (figure.quality == "mobile") ? "🐇" : "🐌";
-    c.fillText(quality, x - 11, y + 27);
+    c.fillText(quality, x - 11, y + 31);
 
     let planet = false;
     switch(figure.planet) {
@@ -666,6 +674,6 @@ const ShieldChart = {
       default:
         console.log("Figure " + figure.name + ": Unknown planet " + figure.planet)
     }
-    c.fillText(planet, x - 11, y + 38);
+    c.fillText(planet, x - 8, y + 41);
   }
 };
