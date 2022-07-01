@@ -74,7 +74,7 @@ addSearchForm();
 function copyLinkMarkdownIcon(linkText, linkUrl) {
   let copyIcon = document.createElement("img");
   copyIcon.setAttribute("src", "/assets/theme/images/markdown-logo.svg");
-  copyIcon.setAttribute("style", "cursor: pointer; opacity: .7;");
+  copyIcon.setAttribute("class", "copy-link-markdown");
   copyIcon.setAttribute("width", "16");
   copyIcon.setAttribute("height", "16");
   copyIcon.setAttribute("alt", "Copy");

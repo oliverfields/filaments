@@ -73,7 +73,7 @@
       ];
 
       let table = document.createElement("table");
-      table.setAttribute("style", "display: block; height: 100px; overflow: auto;");
+      table.setAttribute("style", "display: block; height: 100px; overflow: auto; background-color: white;");
 
       let headerRow = document.createElement("tr");
 
