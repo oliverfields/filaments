@@ -70,30 +70,44 @@ function addSearchForm() {
 }
 addSearchForm();
 
-function addCopyLinkAsMarkdown() {
-  // Add an icon to copy link as Markdown syntax
 
-  let ac = document.getElementById("article-content");
+function copyLinkMarkdownIcon(linkText, linkUrl) {
+  let copyIcon = document.createElement("img");
+  copyIcon.setAttribute("src", "/assets/theme/images/markdown-logo.svg");
+  copyIcon.setAttribute("style", "cursor: pointer; opacity: .7;");
+  copyIcon.setAttribute("width", "16");
+  copyIcon.setAttribute("height", "16");
+  copyIcon.setAttribute("alt", "Copy");
+  copyIcon.addEventListener('click', function() {
+    navigator.clipboard.writeText("[" + linkText + "](" + linkUrl + ")");
+  });
+  return copyIcon;
+}
 
-  if (ac === null) {
+function addCopyLinkAsMarkdown(element) {
+  // Add an icon to copy link as Markdown syntax to all links found in the element
+
+  if (element === null) {
     return;
   }
 
-  let links = ac.getElementsByTagName("A");
+  let links = element.getElementsByTagName("A");
   Array.prototype.slice.call(links).forEach(l => {
-    let copyIcon = document.createElement("img");
-    copyIcon.setAttribute("src", "/assets/theme/images/markdown-logo.svg");
-    copyIcon.setAttribute("style", "cursor: pointer; opacity: .7;");
-    copyIcon.setAttribute("width", "16");
-    copyIcon.setAttribute("height", "16");
-    copyIcon.setAttribute("alt", "Copy");
-    copyIcon.addEventListener('click', function() {
-      navigator.clipboard.writeText("[" + l.innerHTML + "](" + l.href + ")");
-    });
-    l.parentNode.insertBefore(copyIcon, l.nextSibling)
+    l.parentNode.insertBefore(copyLinkMarkdownIcon(l.innerHTML, l.href), l.nextSibling)
   });
 }
-addCopyLinkAsMarkdown();
+addCopyLinkAsMarkdown(document.getElementById("article-content"));
+
+function addCopyLinkToFirstH1(){
+  let h1s = document.getElementsByTagName("H1");
+
+  if (h1s.length > 0) {
+    //h1s[0].parentNode.insertBefore(copyLinkMarkdownIcon(h1s[0].innerHTML, window.location.href), h1s[0].nextSibling);
+    h1s[0].append(copyLinkMarkdownIcon(h1s[0].innerHTML, window.location.href));
+  }
+}
+addCopyLinkToFirstH1();
+
     </script>
   </body>
 </html>
