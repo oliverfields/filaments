@@ -8,3 +8,4 @@ content
 build_stats.csv
 media
 secrets.conf
+__pycache__

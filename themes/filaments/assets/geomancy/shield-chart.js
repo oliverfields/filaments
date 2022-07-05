@@ -464,6 +464,18 @@ const ShieldChart = {
 
     c.stroke();
   },
+  addTooltipArea: function(fig, xy) {
+    let startX = xy[0] - 12;
+    let startY = xy[1] - 14;
+    let toX = startX + 48;
+    let toY = startY + 62;
+ 
+    let a = document.createElement("area");
+    a.setAttribute("shape", "rect");
+    a.setAttribute("coords", startX + "," + startY + "," + toX + "," + toY);
+    a.setAttribute("title", fig.name);
+    return a;
+  },
   houseChartHtml: function() {
     var zodiacSymbol = {
       taurus: "\u2649",
@@ -505,9 +517,34 @@ const ShieldChart = {
     });
 
     var canvas = document.createElement("canvas");
+    var canvasDiv = document.createElement("div");
+    var canvasMap = document.createElement("map");
+    var dummyImg = document.createElement("img");
+
+    dummyImg.width = 420;
+    dummyImg.height = 420;
+
+    canvasMap.setAttribute("name", "house-chart-map");
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.firstMother, houseXy.house1));
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.secondMother, houseXy.house2));
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.thirdMother, houseXy.house3));
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.fourthMother, houseXy.house4));
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.firstDaughter, houseXy.house5));
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.secondDaughter, houseXy.house6));
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.thirdDaughter, houseXy.house7));
+    canvasMap.append(this.addTooltipArea(this.chart.firstRow.fourthDaughter, houseXy.house8));
+    canvasMap.append(this.addTooltipArea(this.chart.secondRow.firstNiece, houseXy.house9));
+    canvasMap.append(this.addTooltipArea(this.chart.secondRow.secondNiece, houseXy.house10));
+    canvasMap.append(this.addTooltipArea(this.chart.secondRow.thirdNiece, houseXy.house11));
+    canvasMap.append(this.addTooltipArea(this.chart.secondRow.fourthNiece, houseXy.house12));
+    canvasMap.append(this.addTooltipArea(this.chart.thirdRow.leftWitness, houseXy.house13));
+    canvasMap.append(this.addTooltipArea(this.chart.thirdRow.rightWitness, houseXy.house14));
+    canvasMap.append(this.addTooltipArea(this.chart.fourthRow.judge, houseXy.house15));
+
     canvas.width = 420;
     canvas.height = 420;
     var c = canvas.getContext("2d");
+
     c.beginPath();
 
     //this.drawHelperGrid(c);
@@ -575,13 +612,19 @@ const ShieldChart = {
     this.addFigureToCanvas(c, this.chart.thirdRow.leftWitness, houseXy.house13, "LW");
     this.addFigureToCanvas(c, this.chart.thirdRow.rightWitness, houseXy.house14, "RW");
     this.addFigureToCanvas(c, this.chart.fourthRow.judge, houseXy.house15, "J");
-   c.stroke();
+
+    c.stroke();
 
     canvas.setAttribute("id", "house-chart");
-    //canvas.style.width = "345px";
-    //canvas.style.height = "345px";
+    canvas.setAttribute("style", "grid-column: 1; grid-row: 1;");
+    dummyImg.setAttribute("usemap", "#house-chart-map");
+    dummyImg.setAttribute("style", "grid-column: 1; grid-row: 1;");
+    canvasDiv.setAttribute("style", "display: grid;");
+    canvasDiv.append(canvas);
+    canvasDiv.append(dummyImg);
+    canvasDiv.append(canvasMap);
 
-    return canvas;
+    return canvasDiv;
   },
   addFigureToCanvas(c, figure, coords, houseNumber) {
     let x = coords[0];
@@ -590,7 +633,6 @@ const ShieldChart = {
     let neck = (figure.neck == "active") ? " ♦ " : "♦ ♦";
     let body = (figure.body == "active") ? " ♦ " : "♦ ♦";
     let feet = (figure.feet == "active") ? " ♦ " : "♦ ♦";
-
 
     c.font = "20px Courier";
     c.fillText(head, x, y);
