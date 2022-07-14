@@ -10,4 +10,4 @@ find "$PAGEGEN_TARGET_DIR" -type d -exec chmod 755 {} \;
 rsync -ap --delete --exclude "/media" -e "ssh -i /home/oliver/.ssh/id_ed25519" "$PAGEGEN_TARGET_DIR/" 'phnd@login.domeneshop.no:filaments.phnd.net/'
 
 # Sync content, because backup
-rsync -ap --delete -e "ssh -i /home/oliver/.ssh/id_ed25519" "$PAGEGEN_TARGET_DIR/" 'phnd@login.domeneshop.no:filaments_content_mirror/'
+rsync -ap --delete -e "ssh -i /home/oliver/.ssh/id_ed25519" "$PAGEGEN_SITE_DIR/content" 'phnd@login.domeneshop.no:filaments_content_mirror/'

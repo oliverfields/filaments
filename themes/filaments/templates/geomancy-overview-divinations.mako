@@ -73,7 +73,7 @@
       ];
 
       let table = document.createElement("table");
-      table.setAttribute("style", "display: block; height: 100px; overflow: auto; background-color: white;");
+      table.setAttribute("class", "radioSelectTable");
 
       let headerRow = document.createElement("tr");
 
@@ -104,7 +104,7 @@
 
         if (index == 0) selectPlanet.checked = true;
 
-        planetName.setAttribute("style", "font-size: .8em; font-weight: bold;");
+        planetName.setAttribute("style", "font-weight: bold;");
         planetName.innerHTML = " " + s.name + "<br /><em style=\"font-size: .8em;\">" + s.planet + " " + s.planetSymbol + " / " + s.intelligence + "</em>";
         planetName.prepend(planetSigil);
         planetName.prepend(selectPlanet);
@@ -121,6 +121,55 @@
 
       });
       return table;
+    }
+
+    function houseSelect() {
+      let houses = [
+        "1st - The querent",
+        "2nd - Money and valueing, property, finances, theft (except real estat/land, that is 4th house and speculative investments, which is 5th)",
+        "3rd - Siblings, neighbors and immidiate surroundings. Journes less than 200 miles, child education, advice, news and rumors",
+        "4th - Land, agriculture, buildings, towns and cities, relocation and moving, underground, unknown object, ancient places and things, old age, the querents father and endings",
+        "5th - Crops, fertility, pregnancy, children. Sexuality (not love and marriage, they are seventh). Festivities, food and drink, clothing. Bodies of water, fishing and rain. Communications (letters, messages, books)",
+        "6th - Employees, service professionals. Practitioners of magic and occultisim other than the querent. Pets, domestic animals (except horses, donkeys, mules, cattle and camels. Illness and injuries",
+        "7th - Intense relationships, spouse or lover, marriage and love. Partnerships, agreements and treaties. Conflict and compition. Thieves and known enemies (unknown enemies are 12th). Hunting and locating",
+        "8th - Death, ghosts and spiritual enteties. Magic performed by on on behalf of querent (divination and occult philosophy are 9th). Missing persons or valuables the querent has loand to others",
+        "9th - Long journeys inward and outward. Trips more than 200 miles by land, all water and air voyages. Religion and spirituality. Higher education, arts and dream interpretation. Occult studies and divination",
+        "10th - Querents mother. Career, reputation and status. Politics. Weather",
+        "11th - Friends, associates, promises, sources of help. Hopes and wishes. Crops from annual plants, and any question the querent does not want to tell the diviner",
+        "12th - Restrictions and limitations, debts owed, imprisionment, secrets and unknown enemies. Cattle, horses, donkeys, mules and all wild animals"
+      ];
+      let houseTable = document.createElement("table");
+      houseTable.setAttribute("class", "radioSelectTable");
+
+      houses.forEach(function(house, index) {
+        let houseRow = document.createElement("tr");
+        let radioCell = document.createElement("td");
+        let descCell = document.createElement("td");
+
+        let houseRadio = document.createElement("input");
+        houseRadio.setAttribute("type", "radio");
+        houseRadio.setAttribute("name", "house");
+        houseRadio.setAttribute("value", house);
+
+        if (index == 0) {
+          houseRadio.disabled = true;
+        }
+
+        if (index == 1) {
+          houseRadio.checked = true;
+        }
+
+        descCell.innerHTML = house;
+
+        radioCell.append(houseRadio)
+
+        houseRow.append(radioCell);
+        houseRow.append(descCell);
+
+        houseTable.append(houseRow);
+      });
+
+      return houseTable;
     }
 
     function figureSelect(name) {
@@ -183,6 +232,9 @@
     questionHeading.setAttribute("style", "margin-top: 0;");
     questionHeading.innerHTML = "Question";
 
+    let houseHeading = document.createElement("h3");
+    houseHeading.innerHTML = "House";
+
     let planetarySpiritHeading = document.createElement("h3");
     planetarySpiritHeading.innerHTML = "Planetary spirit";
 
@@ -216,7 +268,20 @@
         // Success
         function() {
           let selectedPlanetarySpirit = document.querySelector('input[name="planetary-spirit"]:checked').value;
-          let chartTxt = "Template: geomancy.mako\nFirst mother: " + sc.chart.firstRow.firstMother.id + "\nSecond mother: " + sc.chart.firstRow.secondMother.id + "\nThird mother: " + sc.chart.firstRow.thirdMother.id + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id + "\n\n## " + question.value + "\n\n<img alt=\"Planetary spirit " + selectedPlanetarySpirit + "\" title=\"" + selectedPlanetarySpirit + "\" class=\"planetary-spirit-sigil\" src=\"/assets/theme/geomancy/planetary-spirit-sigils/" + selectedPlanetarySpirit + ".png\" />\n\n<pre id=\"house-chart\">\n" + sc.houseChartText() + "\n</pre>\n\n## Morning divination\n\n\n\n## Evening reflection\n\n\n";
+          let selectedHouse = document.querySelector('input[name="house"]:checked').value;
+          let chartTxt = "Template: geomancy.mako\nFirst mother: " + sc.chart.firstRow.firstMother.id
+            + "\nSecond mother: " + sc.chart.firstRow.secondMother.id
+            + "\nThird mother: " + sc.chart.firstRow.thirdMother.id
+            + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id
+            + "\n\n## " + question.value
+            + "\n\n### House\n\n" + selectedHouse
+            + "\n\n### Planetary spirit\n\n"
+            + "<img alt=\"Planetary spirit " + selectedPlanetarySpirit + "\" title=\"" + selectedPlanetarySpirit + "\" class=\"planetary-spirit-sigil\" src=\"/assets/theme/geomancy/planetary-spirit-sigils/" + selectedPlanetarySpirit + ".png\" />"
+            + "\n\n### Chart\n\n"
+            + "<pre id=\"house-chart\">\n" + sc.houseChartText() + "\n</pre>"
+            + "\n\n### Morning divination\n\n"
+            + "\n\n### Evening reflection\n\n\n";
+
           // Copy chart to clipboard
           let copyChartBtn = document.createElement("button");
           copyChartBtn.innerHTML = "Copy chart 📋";
@@ -235,6 +300,8 @@
 
     castControl.append(questionHeading);
     castControl.append(question);
+    castControl.append(houseHeading);
+    castControl.append(houseSelect());
     castControl.append(planetarySpiritHeading);
     castControl.append(planetarySpiritSelect());
     castControl.append(figuresHeading);
