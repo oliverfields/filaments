@@ -10,6 +10,20 @@ const ShieldChart = {
 
     return this.figures[randomKey];
   },
+  housesInfo: [
+    { "number": "1st", "description": "The querent"},
+    { "number": "2nd", "description": "Money and valueing, property, finances, theft (except real estat/land, that is 4th house and speculative investments, which is 5th)"},
+    { "number": "3rd", "description": "Siblings, neighbors and immidiate surroundings. Journes less than 200 miles, child education, advice, news and rumors"},
+    { "number": "4th", "description": "Land, agriculture, buildings, towns and cities, relocation and moving, underground, unknown object, ancient places and things, old age, the querents father and endings"},
+    { "number": "5th", "description": "Crops, fertility, pregnancy, children. Sexuality (not love and marriage, they are seventh). Festivities, food and drink, clothing. Bodies of water, fishing and rain. Communications (letters, messages, books)"},
+    { "number": "6th", "description": "Employees, service professionals. Practitioners of magic and occultisim other than the querent. Pets, domestic animals (except horses, donkeys, mules, cattle and camels. Illness and injuries"},
+    { "number": "7th", "description": "Intense relationships, spouse or lover, marriage and love. Partnerships, agreements and treaties. Conflict and compition. Thieves and known enemies (unknown enemies are 12th). Hunting and locating"},
+    { "number": "8th", "description": "Death, ghosts and spiritual enteties. Magic performed by on on behalf of querent (divination and occult philosophy are 9th). Missing persons or valuables the querent has loand to others"},
+    { "number": "9th", "description": "Long journeys inward and outward. Trips more than 200 miles by land, all water and air voyages. Religion and spirituality. Higher education, arts and dream interpretation. Occult studies and divination"},
+    { "number": "10th", "description": "Querents mother. Career, reputation and status. Politics. Weather"},
+    { "number": "11th", "description": "Friends, associates, promises, sources of help. Hopes and wishes. Crops from annual plants, and any question the querent does not want to tell the diviner"},
+    { "number": "12th", "description": "Restrictions and limitations, debts owed, imprisionment, secrets and unknown enemies. Cattle, horses, donkeys, mules and all wild animals" }
+  ],
   lookupFigureByName: function(name) {
     for (const [key, fig] of Object.entries(this.figures)) {
       if (key == name) {
@@ -451,15 +465,15 @@ const ShieldChart = {
     c.strokeStyle = "#FF0000";
 
     // Draw horizontal lines
-    for (var x = 0; x < 420; x += 30) {
+    for (var x = 0; x < 300; x += 10) {
       c.moveTo(x, 0);
-      c.lineTo(x, 420);
+      c.lineTo(x, 300);
     }
 
     // Draw vertical lines
-    for (var y = 0; y < 420; y += 30) {
+    for (var y = 0; y < 300; y += 10) {
       c.moveTo(0, y);
-      c.lineTo(420, y);
+      c.lineTo(300, y);
     }
 
     c.stroke();
@@ -717,5 +731,257 @@ const ShieldChart = {
         console.log("Figure " + figure.name + ": Unknown planet " + figure.planet)
     }
     c.fillText(planet, x - 8, y + 41);
+  },
+  capitalize: function(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  },
+  figurePopupContent: function(figure, house) {
+    let content = "<h4>" + figure.name;
+
+    let innerElement = false;
+    switch(figure.innerElement) {
+      case "fire":
+        innerElement = "🔥";
+        break;
+      case "air":
+        innerElement = "💨";
+        break;
+      case "water":
+        innerElement = "💧";
+        break;
+      case "earth":
+        innerElement = "🌍";
+        break;
+      default:
+        console.log("Figure " + figure.name + ": Unknown innerElement " + figure.innerElement)
+    }
+
+
+    let outerElement = false;
+    switch(figure.outerElement) {
+      case "fire":
+        outerElement = "🔥";
+        break;
+      case "air":
+        outerElement = "💨";
+        break;
+      case "water":
+        outerElement = "💧";
+        break;
+      case "earth":
+        outerElement = "🌍";
+        break;
+      default:
+        console.log("Figure " + figure.name + ": Unknown outerElement " + figure.outerElement)
+    }
+
+    content += "<span title=\"Outer element " + this.capitalize(figure.outerElement) + "\">" + outerElement + "</span><span title=\"Inner element " + this.capitalize(figure.innerElement) + "\">(" + innerElement + ")</span>";
+
+    let quality = (figure.quality == "mobile") ? "🐇" : "🐌";
+    content += "<span title=\"Quality " + figure.quality + "\">" + quality + "</span>";
+
+    let planet = false;
+    switch(figure.planet) {
+      case "saturn":
+        planet = "♄";
+        break;
+      case "jupiter":
+        planet = "♃";
+        break;
+      case "mars":
+        planet = "♂";
+        break;
+      case "sun":
+        planet = "☉";
+        break;
+      case "venus":
+        planet = "♀";
+        break;
+      case "mercury":
+        planet = "☿";
+        break;
+      case "moon":
+        planet = "☾";
+        break;
+      case "southern lunar node":
+        planet = "☋";
+        break;
+      case "northern lunar node":
+        planet = "☊";
+        break;
+      default:
+        console.log("Figure " + figure.name + ": Unknown planet " + figure.planet)
+    }
+
+    content += "<span title=\"Planet " + this.capitalize(figure.planet) + "\">" + planet + "</span>";
+
+    content += "</h4>";
+
+    content += "<img width=\"32\" heigh=\"32\" src=\"/assets/theme/geomancy/figures/" + figure.img + "\" style=\"float: left;\" />";
+
+    content += "<p class=\"tooltip-keyword\">" + figure.keyword + "</p>";
+
+    content += "<p>" + figure.description + "</p>";
+
+    // House info, only houses have house info, not RW, LW and J
+    if (isNaN(house) == false) {
+        houseIndex = house -1;
+        content += "<h4>House</h4><p>" + this.housesInfo[houseIndex] + "</p>";
+    }
+
+    return content;
+  }, 
+  addFigureV2: function(fig, xy, houseNumber) {
+    let figContainer = document.createElement("span");
+    let figTooltip = document.createElement("span");
+    let figImg = document.createElement("img");
+    figImg.src = "/assets/theme/geomancy/figures/" + fig.img;
+    //figImg.src = "/assets/theme/geomancy/figures/populus.svg";
+    figImg.width = "32";
+    figImg.height = "32";
+    figImg.alt = fig.name;
+
+    figTooltip.setAttribute("class", "tooltip-content");
+    figTooltip.innerHTML = this.figurePopupContent(fig, houseNumber);
+
+    figContainer.setAttribute("class", "tooltip");
+    figContainer.style = "position: absolute; top: " + xy[0] + "px; left: " + xy[1] + "px;";
+    figContainer.append(figImg);
+    figContainer.append(figTooltip);
+
+    // If click events to toggle dropdown
+    figImg.addEventListener('mouseup', function(e) {
+      // Close any already opend tooltips
+      document.querySelectorAll('.tooltip-content').forEach(t => t.style.visibility = "hidden");
+      figTooltip.style.visibility = "visible";
+    });
+
+    let popupClose = document.createElement("div");
+    popupClose.innerHTML = "🗙";
+    popupClose.className = "tooltip-close";
+
+    popupClose.addEventListener('mouseup', function(e) {
+      figTooltip.style.visibility = "hidden";
+    });
+
+    figTooltip.append(popupClose);
+
+    return figContainer;
+  },
+  houseChartHtmlV2: function(quesitedHouse) {
+    console.log(quesitedHouse);
+    var houseXy ={
+      house1: [104,24],
+      house2: [164,4],
+      house3: [200,44],
+      house4: [190,104],
+      house5: [200,164],
+      house6: [164,204],
+      house7: [104,186],
+      house8: [44,198],
+      house9: [10,164],
+      house10: [20,104],
+      house11: [8,44],
+      house12: [46,10],
+      house13: [78, 134],
+      house14: [78, 72],
+      house15: [130, 104]
+    };
+
+    var chartDiv = document.createElement("div");
+    chartDiv.setAttribute("id", "house-chart");
+
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.firstMother, houseXy.house1, "1"));
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.secondMother, houseXy.house2, "2"));
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.thirdMother, houseXy.house3, "3"));
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.fourthMother, houseXy.house4, "4"));
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.firstDaughter, houseXy.house5, "5"));
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.secondDaughter, houseXy.house6, "6"));
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.thirdDaughter, houseXy.house7, "7"));
+    chartDiv.append(this.addFigureV2(this.chart.firstRow.fourthDaughter, houseXy.house8, "8"));
+    chartDiv.append(this.addFigureV2(this.chart.secondRow.firstNiece, houseXy.house9, "9"));
+    chartDiv.append(this.addFigureV2(this.chart.secondRow.secondNiece, houseXy.house10, "10"));
+    chartDiv.append(this.addFigureV2(this.chart.secondRow.thirdNiece, houseXy.house11, "11"));
+    chartDiv.append(this.addFigureV2(this.chart.secondRow.fourthNiece, houseXy.house12, "12"));
+    chartDiv.append(this.addFigureV2(this.chart.thirdRow.leftWitness, houseXy.house13, "LW"));
+    chartDiv.append(this.addFigureV2(this.chart.thirdRow.rightWitness, houseXy.house14, "RW"));
+    chartDiv.append(this.addFigureV2(this.chart.fourthRow.judge, houseXy.house15, "J"));
+
+    var canvas = document.createElement("canvas");
+    canvas.width = 240;
+    canvas.height = 240;
+    var c = canvas.getContext("2d");
+
+    c.beginPath();
+
+    // Scaffolding
+    /*
+    this.drawHelperGrid(c);
+
+    c.stroke();
+    c.strokeStyle = "#00ff00";
+    c.moveTo(120,0);
+    c.lineTo(120,250);
+    c.moveTo(0,120);
+    c.lineTo(240,120);
+    c.stroke();
+    */
+
+    c.strokeStyle = "#999999";
+
+    // Border
+    c.rect(x=0, y=0, w=240, h=240);
+
+    // Inner square
+    c.rect(x=60, y=60, w=120, h=120);
+
+    // Inner Diamond shape
+    c.moveTo(120, 0);
+    c.lineTo(0, 120);
+
+    c.moveTo(120, 0);
+    c.lineTo(240, 120);
+
+    c.moveTo(0, 120);
+    c.lineTo(120, 240);
+
+    c.moveTo(240, 120);
+    c.lineTo(120, 240);
+
+    // Diagonals to inner square
+    c.moveTo(0, 0);
+    c.lineTo(60, 60);
+
+    c.moveTo(240, 0);
+    c.lineTo(180, 60);
+
+    c.moveTo(240, 240);
+    c.lineTo(180, 180);
+
+    c.moveTo(0, 240);
+    c.lineTo(60, 180);
+
+    c.font = "10px Courier";
+    let numberoffset = [10, -7];
+    c.fillText(" 1", houseXy.house1[1] + numberoffset[1], houseXy.house1[0] + numberoffset[0]);
+    c.fillText(" 2", houseXy.house2[1] + numberoffset[1], houseXy.house2[0] + numberoffset[0]);
+    c.fillText(" 3", houseXy.house3[1] + numberoffset[1], houseXy.house3[0] + numberoffset[0]);
+    c.fillText(" 4", houseXy.house4[1] + numberoffset[1], houseXy.house4[0] + numberoffset[0]);
+    c.fillText(" 5", houseXy.house5[1] + numberoffset[1], houseXy.house5[0] + numberoffset[0]);
+    c.fillText(" 6", houseXy.house6[1] + numberoffset[1], houseXy.house6[0] + numberoffset[0]);
+    c.fillText(" 7", houseXy.house7[1] + numberoffset[1], houseXy.house7[0] + numberoffset[0]);
+    c.fillText(" 8", houseXy.house8[1] + numberoffset[1], houseXy.house8[0] + numberoffset[0]);
+    c.fillText(" 9", houseXy.house9[1] + numberoffset[1], houseXy.house9[0] + numberoffset[0]);
+    c.fillText("10", houseXy.house10[1] + numberoffset[1], houseXy.house10[0] + numberoffset[0]);
+    c.fillText("11", houseXy.house11[1] + numberoffset[1], houseXy.house11[0] + numberoffset[0]);
+    c.fillText("12", houseXy.house12[1] + numberoffset[1], houseXy.house12[0] + numberoffset[0]);
+    c.fillText("RW", houseXy.house13[1] + numberoffset[1], houseXy.house13[0] + numberoffset[0]);
+    c.fillText("LW", houseXy.house14[1] + numberoffset[1], houseXy.house14[0] + numberoffset[0]);
+    c.fillText("J", houseXy.house15[1] + numberoffset[1], houseXy.house15[0] + numberoffset[0]);
+
+    c.stroke();
+
+    chartDiv.append(canvas);
+    return chartDiv;
   }
 };

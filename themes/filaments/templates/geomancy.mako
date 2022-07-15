@@ -21,7 +21,7 @@
         // Success
         function() {
           const preSc = document.getElementById("house-chart");
-          preSc.parentNode.replaceChild(sc.houseChartHtml(), preSc);
+          preSc.parentNode.replaceChild(sc.houseChartHtmlV2(${page.custom_headers['quesited house']}), preSc);
         },
         // Failure
         function() { console.log("Unable to cast chart:(") }

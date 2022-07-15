@@ -12,6 +12,8 @@
 
   <script src="/assets/theme/geomancy/shield-chart.js"></script>
   <script>
+    sc = Object.create(ShieldChart);
+
     function planetarySpiritSelect() {
       let planetarySpirits = [
         {
@@ -124,20 +126,7 @@
     }
 
     function houseSelect() {
-      let houses = [
-        "1st - The querent",
-        "2nd - Money and valueing, property, finances, theft (except real estat/land, that is 4th house and speculative investments, which is 5th)",
-        "3rd - Siblings, neighbors and immidiate surroundings. Journes less than 200 miles, child education, advice, news and rumors",
-        "4th - Land, agriculture, buildings, towns and cities, relocation and moving, underground, unknown object, ancient places and things, old age, the querents father and endings",
-        "5th - Crops, fertility, pregnancy, children. Sexuality (not love and marriage, they are seventh). Festivities, food and drink, clothing. Bodies of water, fishing and rain. Communications (letters, messages, books)",
-        "6th - Employees, service professionals. Practitioners of magic and occultisim other than the querent. Pets, domestic animals (except horses, donkeys, mules, cattle and camels. Illness and injuries",
-        "7th - Intense relationships, spouse or lover, marriage and love. Partnerships, agreements and treaties. Conflict and compition. Thieves and known enemies (unknown enemies are 12th). Hunting and locating",
-        "8th - Death, ghosts and spiritual enteties. Magic performed by on on behalf of querent (divination and occult philosophy are 9th). Missing persons or valuables the querent has loand to others",
-        "9th - Long journeys inward and outward. Trips more than 200 miles by land, all water and air voyages. Religion and spirituality. Higher education, arts and dream interpretation. Occult studies and divination",
-        "10th - Querents mother. Career, reputation and status. Politics. Weather",
-        "11th - Friends, associates, promises, sources of help. Hopes and wishes. Crops from annual plants, and any question the querent does not want to tell the diviner",
-        "12th - Restrictions and limitations, debts owed, imprisionment, secrets and unknown enemies. Cattle, horses, donkeys, mules and all wild animals"
-      ];
+      let houses = sc.housesInfo;
       let houseTable = document.createElement("table");
       houseTable.setAttribute("class", "radioSelectTable");
 
@@ -149,7 +138,7 @@
         let houseRadio = document.createElement("input");
         houseRadio.setAttribute("type", "radio");
         houseRadio.setAttribute("name", "house");
-        houseRadio.setAttribute("value", house);
+        houseRadio.setAttribute("value", house.number);
 
         if (index == 0) {
           houseRadio.disabled = true;
@@ -159,7 +148,7 @@
           houseRadio.checked = true;
         }
 
-        descCell.innerHTML = house;
+        descCell.innerHTML = "<strong>" + house.number + "</strong> " + house.description;
 
         radioCell.append(houseRadio)
 
@@ -262,7 +251,6 @@
       thirdMother = (thirdMother == "random") ? false : thirdMother;
       fourthMother = (fourthMother == "random") ? false : fourthMother;
 
-      sc = Object.create(ShieldChart);
 
       const chartJson = sc.cast(["/assets/theme/geomancy/figures.json"], firstMother, secondMother, thirdMother, fourthMother).then(
         // Success
@@ -273,8 +261,8 @@
             + "\nSecond mother: " + sc.chart.firstRow.secondMother.id
             + "\nThird mother: " + sc.chart.firstRow.thirdMother.id
             + "\nFourth mother: " + sc.chart.firstRow.fourthMother.id
+            + "\nQuesited house: " + selectedHouse
             + "\n\n## " + question.value
-            + "\n\n### House\n\n" + selectedHouse
             + "\n\n### Planetary spirit\n\n"
             + "<img alt=\"Planetary spirit " + selectedPlanetarySpirit + "\" title=\"" + selectedPlanetarySpirit + "\" class=\"planetary-spirit-sigil\" src=\"/assets/theme/geomancy/planetary-spirit-sigils/" + selectedPlanetarySpirit + ".png\" />"
             + "\n\n### Chart\n\n"

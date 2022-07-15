@@ -59,10 +59,6 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 		background-color: $light-2
 		padding: .8em
 
-	#house-chart
-		width: 345px
-		height: 345px
-
 body
 	padding: 0 1em
 
@@ -277,10 +273,13 @@ p code
 
 #shield-chart, #house-chart
 	background-color: $light-1
+	position: relative
 	font-family: monospace
 	font-size: 10px
 	line-height: 1em
 	letter-spacing: -.1em
+	width: 240px
+	height: 240px
 
 .geomancy-casting-control
 	background-color: $light-2
@@ -326,3 +325,46 @@ figure
 .radioSelectTable td
 	font-size: .8em
 	line-height: 1.2em
+
+.radioSelectTable strong
+	font-size: 1em
+
+.tooltip
+	position: relative
+	display: inline-block
+
+.tooltip img
+	cursor: pointer
+
+.tooltip .tooltip-content
+	visibility: hidden
+	width: 300px
+	background-color: $light-2
+	letter-spacing: normal
+	padding: 1em
+	border-radius: 1px
+	position: absolute
+	z-index: 1
+	top: 100%
+	left: 50%
+	margin-left: -60px
+
+.tooltip-content h4
+	margin: 0 0 .5em 0
+
+.tooltip-content p
+	font-size: .8em
+
+.tooltip-close
+	position: absolute
+	top: .3em
+	right: .5em
+	font-weight: bold
+	cursor: pointer
+
+.tooltip-keyword
+	line-height: 32px
+	font-size: 1.1em !important
+	font-style: italic
+	font-family: Georgia, serif
+	margin-left: 2em
