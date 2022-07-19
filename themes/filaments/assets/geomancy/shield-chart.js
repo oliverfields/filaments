@@ -945,8 +945,6 @@ const ShieldChart = {
     selectedHouseIndex = parseInt(selectedHouseIndex) - 1;
     houseTriangles.forEach(function(t, index) {
       c.beginPath();
-      console.log(index);
-      console.log(selectedHouseIndex);
       (index == selectedHouseIndex) ? c.fillStyle = "#D36135" : c.fillStyle = "#DDDBCB";
       c.strokeStyle = "#F7F6F3";
       c.moveTo(t[0][0], t[0][1]);
