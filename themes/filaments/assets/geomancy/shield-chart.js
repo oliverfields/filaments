@@ -940,15 +940,14 @@ const ShieldChart = {
     c.stroke();
     */
 
-    c.beginPath();
-
     // Caluculate index from house number (1st -> 0, 2nd -> 1 etc)
     selectedHouseIndex = quesitedHouse.slice(0, -2);
     selectedHouseIndex = parseInt(selectedHouseIndex) - 1;
     houseTriangles.forEach(function(t, index) {
+      c.beginPath();
       console.log(index);
       console.log(selectedHouseIndex);
-      (index == selectedHouseIndex) ? c.fillStyle = "#DDDBCB" : c.fillStyle = "red";
+      (index == selectedHouseIndex) ? c.fillStyle = "#D36135" : c.fillStyle = "#DDDBCB";
       c.strokeStyle = "#F7F6F3";
       c.moveTo(t[0][0], t[0][1]);
       c.lineTo(t[1][0], t[1][1]);
