@@ -7,9 +7,8 @@ find "$PAGEGEN_TARGET_DIR" -type f -exec chmod 644 {} \;
 find "$PAGEGEN_TARGET_DIR" -type d -exec chmod 755 {} \;
 
 # Sync site
-echo "Pushing changes to web server"
+echo "Deploying to web server.."
 rsync -ap --delete --exclude "/media" -e "ssh -i /home/oliver/.ssh/id_ed25519" "$PAGEGEN_TARGET_DIR/" 'phnd@login.domeneshop.no:filaments.phnd.net/'
 
 # Sync content, because backup
-echo "Syncing content backup"
 rsync -ap --delete -e "ssh -i /home/oliver/.ssh/id_ed25519" "$PAGEGEN_SITE_DIR/content" 'phnd@login.domeneshop.no:filaments_content_mirror/'
