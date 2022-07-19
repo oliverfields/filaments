@@ -826,7 +826,7 @@ const ShieldChart = {
     // House info, only houses have house info, not RW, LW and J
     if (isNaN(house) == false) {
         houseIndex = house -1;
-        content += "<h4>House</h4><p>" + this.housesInfo[houseIndex] + "</p>";
+        content += "<h4>" + this.housesInfo[houseIndex].number + " house</h4><p>" + this.housesInfo[houseIndex].description + "</p>";
     }
 
     return content;
@@ -857,7 +857,7 @@ const ShieldChart = {
     });
 
     let popupClose = document.createElement("div");
-    popupClose.innerHTML = "🗙";
+    popupClose.innerHTML = "✖";
     popupClose.className = "tooltip-close";
 
     popupClose.addEventListener('mouseup', function(e) {
@@ -869,7 +869,6 @@ const ShieldChart = {
     return figContainer;
   },
   houseChartHtmlV2: function(quesitedHouse) {
-    console.log(quesitedHouse);
     var houseXy ={
       house1: [104,24],
       house2: [164,4],
@@ -887,6 +886,21 @@ const ShieldChart = {
       house14: [78, 72],
       house15: [130, 104]
     };
+
+    houseTriangles = [
+      [[0,120], [60,60],[60,180]], //1st
+      [[0,120], [60,180],[0,240]], //2nd
+      [[0,240], [60,180],[120,240]], //3rd
+      [[120,240], [180,180],[60,180]], //4th
+      [[120,240], [180,180],[240,240]],//5th
+      [[240,240], [180,180],[240,120]],//6th
+      [[180,180], [240,120],[180,60]],//7th
+      [[180,60], [240,120],[240,0]],//8th
+      [[240,0], [180,60],[120,0]],//9th
+      [[120,0], [60,60],[180,60]],//10th
+      [[0,0], [60,60],[120,0]],//11th
+      [[0,0], [60,60],[0,120]],//12th
+    ];
 
     var chartDiv = document.createElement("div");
     chartDiv.setAttribute("id", "house-chart");
@@ -912,7 +926,6 @@ const ShieldChart = {
     canvas.height = 240;
     var c = canvas.getContext("2d");
 
-    c.beginPath();
 
     // Scaffolding
     /*
@@ -927,41 +940,27 @@ const ShieldChart = {
     c.stroke();
     */
 
-    c.strokeStyle = "#999999";
+    c.beginPath();
 
-    // Border
-    c.rect(x=0, y=0, w=240, h=240);
+    // Caluculate index from house number (1st -> 0, 2nd -> 1 etc)
+    selectedHouseIndex = quesitedHouse.slice(0, -2);
+    selectedHouseIndex = parseInt(selectedHouseIndex) - 1;
+    houseTriangles.forEach(function(t, index) {
+      console.log(index);
+      console.log(selectedHouseIndex);
+      (index == selectedHouseIndex) ? c.fillStyle = "#DDDBCB" : c.fillStyle = "red";
+      c.strokeStyle = "#F7F6F3";
+      c.moveTo(t[0][0], t[0][1]);
+      c.lineTo(t[1][0], t[1][1]);
+      c.lineTo(t[2][0], t[2][1]);
+      c.fill();
+      c.stroke();
+    });
 
-    // Inner square
-    c.rect(x=60, y=60, w=120, h=120);
-
-    // Inner Diamond shape
-    c.moveTo(120, 0);
-    c.lineTo(0, 120);
-
-    c.moveTo(120, 0);
-    c.lineTo(240, 120);
-
-    c.moveTo(0, 120);
-    c.lineTo(120, 240);
-
-    c.moveTo(240, 120);
-    c.lineTo(120, 240);
-
-    // Diagonals to inner square
-    c.moveTo(0, 0);
-    c.lineTo(60, 60);
-
-    c.moveTo(240, 0);
-    c.lineTo(180, 60);
-
-    c.moveTo(240, 240);
-    c.lineTo(180, 180);
-
-    c.moveTo(0, 240);
-    c.lineTo(60, 180);
-
+    c.beginPath();
+    c.fillStyle = "#050505";
     c.font = "10px Courier";
+
     let numberoffset = [10, -7];
     c.fillText(" 1", houseXy.house1[1] + numberoffset[1], houseXy.house1[0] + numberoffset[0]);
     c.fillText(" 2", houseXy.house2[1] + numberoffset[1], houseXy.house2[0] + numberoffset[0]);
